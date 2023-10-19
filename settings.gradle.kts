@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "Carplace"
 include(":app")
 include(":network")
+include(":model")
