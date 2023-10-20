@@ -14,8 +14,18 @@ class NetworkRepository {
 
     /**
      * Gets the car list from network.
+     *
+     * @param categoryId Identifier of the category.
+     * @param minDate Minimum date of the advertisement.
+     * @param maxDate Maximum date of the advertisement.
+     * @param minYear Minimum model year of the filtered car.
+     * @param maxYear Maximum model year of the filtered car.
+     * @param sort Type of the sorting. Price = 0, Date = 1, Year = 2.
+     * @param sortDirection Sort direction of the list. Ascending=0, Descending=1.
+     * @param skip Skips the size of element.
+     * @param take Takes the size of element.
      */
-    suspend fun getCars(
+    suspend fun getListing(
         categoryId: Int? = null,
         minDate: String? = null,
         maxDate: String? = null,
@@ -46,18 +56,23 @@ class NetworkRepository {
 
     /**
      * Gets the item detail from network.
+     *
      * @param id Identifier of the car detail that that retrieved from network.
      */
     suspend fun getCarDetail(
         id: Int
     ): Result<DetailResponse> = withContext(Dispatchers.IO) {
         runCatching {
-            val url = URL_DETAIL
-            client.get(url).body()
+            client.get(URL_DETAIL) {
+                method = HttpMethod.Get
+                url {
+                    parameters.append("id", id.toString())
+                }
+            }.body()
         }
     }
 
-    private companion object URL {
+    internal companion object URL {
         const val URL_LISTING = BuildConfig.BASE_URL + "v1/listing"
         const val URL_DETAIL = BuildConfig.BASE_URL + "v1/detail"
     }
