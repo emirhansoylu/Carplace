@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zero">0dp</dimen>
+
+    <dimen name="corner_radius">8dp</dimen>
+    <dimen name="icon_size">64dp</dimen>
+
+    <dimen name="small_margin">4dp</dimen>
+    <dimen name="medium_margin">8dp</dimen>
+    <dimen name="high_margin">12dp</dimen>
+</resources>

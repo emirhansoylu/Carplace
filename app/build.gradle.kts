@@ -68,6 +68,7 @@ dependencies {
 
     val hiltVersion: String by project
     implementation("com.google.dagger:hilt-android:$hiltVersion")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     kapt("com.google.dagger:hilt-compiler:$hiltVersion")
 
     val navVersion: String by project
