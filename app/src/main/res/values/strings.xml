@@ -6,4 +6,5 @@
     <string name="text_error">Something went wrong</string>
     <string name="text_retry">Retry</string>
     <string name="transition_name">hero_image</string>
+    <string name="text_call">Call</string>
 </resources>
