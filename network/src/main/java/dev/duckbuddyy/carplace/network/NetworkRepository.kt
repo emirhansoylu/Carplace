@@ -59,7 +59,7 @@ class NetworkRepository {
      *
      * @param id Identifier of the car detail that that retrieved from network.
      */
-    suspend fun getCarDetail(
+    suspend fun getDetail(
         id: Int
     ): Result<DetailResponse> = withContext(Dispatchers.IO) {
         runCatching {

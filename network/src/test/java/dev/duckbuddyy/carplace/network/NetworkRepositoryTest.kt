@@ -62,7 +62,7 @@ class NetworkRepositoryTest {
 
     @Test
     fun getDetailFromNetwork(): Unit = runBlocking {
-        networkRepository.getCarDetail(
+        networkRepository.getDetail(
             id = 7333920
         ).onSuccess { networkDetail: DetailResponse ->
             assert(networkDetail == MockData.mockDetailObject) {
