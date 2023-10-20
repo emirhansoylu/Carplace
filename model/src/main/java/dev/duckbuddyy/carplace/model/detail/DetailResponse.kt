@@ -1,6 +1,6 @@
 package dev.duckbuddyy.carplace.model.detail
 
-
+import dev.duckbuddyy.carplace.model.Category
 import dev.duckbuddyy.carplace.model.Location
 import dev.duckbuddyy.carplace.model.Property
 import dev.duckbuddyy.carplace.model.UserInfo
@@ -14,25 +14,25 @@ data class DetailResponse(
     @SerialName("date")
     val date: String,
     @SerialName("dateFormatted")
-    val dateFormatted: String,
+    val dateFormatted: String?,
     @SerialName("id")
     val id: Int,
     @SerialName("location")
     val location: Location,
     @SerialName("modelName")
-    val modelName: String,
+    val modelName: String?,
     @SerialName("photos")
     val photos: List<String>,
     @SerialName("price")
     val price: Int,
     @SerialName("priceFormatted")
-    val priceFormatted: String,
+    val priceFormatted: String?,
     @SerialName("properties")
     val properties: List<Property>,
     @SerialName("text")
-    val text: String,
+    val text: String?,
     @SerialName("title")
-    val title: String,
+    val title: String?,
     @SerialName("userInfo")
     val userInfo: UserInfo
 )

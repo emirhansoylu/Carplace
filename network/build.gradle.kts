@@ -9,6 +9,10 @@ android {
 
     defaultConfig {
         minSdk = 21
+        buildConfigField("String", "BASE_URL", "\"${project.property("BASE_URL")}\"")
+    }
+    buildFeatures {
+        buildConfig = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

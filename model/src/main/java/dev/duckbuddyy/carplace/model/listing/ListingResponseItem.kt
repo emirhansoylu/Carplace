@@ -1,6 +1,5 @@
 package dev.duckbuddyy.carplace.model.listing
 
-
 import dev.duckbuddyy.carplace.model.Category
 import dev.duckbuddyy.carplace.model.Location
 import dev.duckbuddyy.carplace.model.Property
@@ -14,21 +13,21 @@ data class ListingResponseItem(
     @SerialName("date")
     val date: String,
     @SerialName("dateFormatted")
-    val dateFormatted: String,
+    val dateFormatted: String?,
     @SerialName("id")
     val id: Int,
     @SerialName("location")
     val location: Location,
     @SerialName("modelName")
-    val modelName: String,
+    val modelName: String?,
     @SerialName("photo")
-    val photo: String,
+    val photo: String?,
     @SerialName("price")
     val price: Int,
     @SerialName("priceFormatted")
-    val priceFormatted: String,
+    val priceFormatted: String?,
     @SerialName("properties")
     val properties: List<Property>,
     @SerialName("title")
-    val title: String
+    val title: String?
 )

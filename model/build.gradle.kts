@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    kotlin("plugin.serialization") version "1.9.10"
 }
 
 android {
@@ -20,8 +21,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":model"))
-
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 }
