@@ -11,14 +11,5 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        GlobalScope.launch {
-            val response = NetworkRepository().getListing()
-            Log.d("Emirhan", response.toString())
-            val response2 = NetworkRepository().getCarDetail(
-                id = 7333920
-            )
-            println("Emirhan" + response2)
-        }
     }
 }
