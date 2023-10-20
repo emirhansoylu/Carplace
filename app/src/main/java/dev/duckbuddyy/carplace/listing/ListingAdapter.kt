@@ -6,6 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import dev.duckbuddyy.carplace.databinding.ItemListingBinding
+import dev.duckbuddyy.carplace.domain.load
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
 
 class ListingAdapter(
@@ -34,6 +35,8 @@ class ListingAdapter(
             root.setOnClickListener { onItemClicked(item) }
             tvListingTitle.text = item.title
             tvListingPrice.text = item.priceFormatted ?: item.price.toString()
+            tvListingModelName.text = item.modelName
+            item.photo?.replace("{0}","800x600")?.let { ivListing.load(it) }
         }
     }
 

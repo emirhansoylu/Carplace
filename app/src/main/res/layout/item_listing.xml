@@ -18,21 +18,25 @@
             android:layout_width="@dimen/icon_size"
             android:layout_height="@dimen/icon_size"
             android:layout_margin="@dimen/medium_margin"
+            android:contentDescription="@string/cd_listing_image"
+
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars"
-            android:contentDescription="@string/cd_listing_image" />
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tv_listing_title"
             style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginHorizontal="@dimen/medium_margin"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_listing"
             app:layout_constraintTop_toTopOf="@+id/iv_listing"
-            tools:text="Seat Ibiza" />
+            tools:text="Gırtlak paket hatasız" />
 
         <TextView
             android:id="@+id/tv_listing_price"
@@ -43,6 +47,17 @@
             app:layout_constraintBottom_toBottomOf="@+id/iv_listing"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="720.000 ₺" />
+
+        <TextView
+            android:id="@+id/tv_listing_model_name"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/medium_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_listing"
+            app:layout_constraintEnd_toStartOf="@+id/tv_listing_price"
+            app:layout_constraintStart_toEndOf="@+id/iv_listing"
+            tools:text="Seat Ibiza" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
