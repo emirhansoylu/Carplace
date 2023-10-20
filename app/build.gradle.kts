@@ -52,6 +52,7 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation("androidx.transition:transition:1.4.1")
 
     implementation("com.google.android.material:material:1.10.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
