@@ -2,16 +2,21 @@ package dev.duckbuddyy.carplace.detail
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.HtmlCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.duckbuddyy.carplace.databinding.FragmentDetailBinding
 import dev.duckbuddyy.carplace.domain.collectLatestWhenStarted
 import dev.duckbuddyy.carplace.domain.load
+import dev.duckbuddyy.carplace.model.enums.PhotoSize
 
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
@@ -20,18 +25,30 @@ class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
 
+    private var imageSliderAdapter: ImageSliderAdapter? = null
+
     private val uiStateCollector: suspend (DetailState) -> Unit = { state ->
         binding.apply {
             layoutDetailLoading.root.isVisible = state == DetailState.Loading
             layoutDetailError.root.isVisible = state == DetailState.Error
             clDetail.isVisible = state is DetailState.Success
             if (state is DetailState.Success) {
-                ivDetail.load(state.detail.photos.first())
+                imageSliderAdapter = ImageSliderAdapter(
+                    imageUrls = state.detail.getSizedPhotos(),
+                    onItemClicked = { viewModel.onImageClicked(imageUrl = it) }
+                )
+                vpImage.adapter = imageSliderAdapter
                 layoutDetail.tvDetailName.text = state.detail.title
-                layoutDetail.tvDetailDescription.text = state.detail.text
-                layoutDetail.tvDetailPrice.text = state.detail.priceFormatted ?: state.detail.price.toString()
+                layoutDetail.tvDetailDescription.text = state.detail.escapedText
+                layoutDetail.tvDetailPrice.text = state.detail.actualPrice
+
+
             }
         }
+    }
+
+    private val navigationCollector: suspend (NavDirections) -> Unit = {
+        findNavController().navigate(it)
     }
 
     private val launchIntentCollector: suspend (Intent) -> Unit = {
@@ -48,13 +65,13 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.apply { 
-            
+        binding.apply {
+            layoutDetail.btnCall.setOnClickListener { viewModel.onCallClicked() }
         }
-        binding.layoutDetail.btnCall.setOnClickListener { viewModel.onCallClicked() }
         viewModel.apply {
             uiStateFlow.collectLatestWhenStarted(viewLifecycleOwner, uiStateCollector)
             launchIntentFlow.collectLatestWhenStarted(viewLifecycleOwner, launchIntentCollector)
+            navigationFlow.collectLatestWhenStarted(viewLifecycleOwner, navigationCollector)
         }
     }
 

@@ -13,11 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/iv_detail"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp_image"
             android:layout_width="@dimen/zero"
             android:layout_height="@dimen/zero"
-            android:transitionName="@string/transition_name"
             app:layout_constraintBottom_toTopOf="@id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

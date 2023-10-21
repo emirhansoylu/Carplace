@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import dev.duckbuddyy.carplace.databinding.ItemListingBinding
 import dev.duckbuddyy.carplace.domain.load
+import dev.duckbuddyy.carplace.model.enums.PhotoSize
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
 
 class ListingAdapter(
@@ -34,9 +35,9 @@ class ListingAdapter(
         fun bind(item: ListingResponseItem) = binding.apply {
             root.setOnClickListener { onItemClicked(item) }
             tvListingTitle.text = item.title
-            tvListingPrice.text = item.priceFormatted ?: item.price.toString()
+            tvListingPrice.text = item.actualPrice
             tvListingModelName.text = item.modelName
-            item.photo?.replace("{0}","800x600")?.let { ivListing.load(it) }
+            item.getSizedPhoto()?.let { ivListing.load(it) }
         }
     }
 

@@ -5,8 +5,10 @@ import android.net.Uri
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.duckbuddyy.carplace.model.detail.DetailResponse
+import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
 import dev.duckbuddyy.carplace.network.NetworkRepository
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,6 +29,9 @@ class DetailViewModel @Inject constructor(
 
     private val _launchIntentFlow = MutableSharedFlow<Intent>()
     val launchIntentFlow = _launchIntentFlow.asSharedFlow()
+
+    private val _navigationFlow = MutableSharedFlow<NavDirections>()
+    val navigationFlow = _navigationFlow.asSharedFlow()
 
     private val detail: DetailResponse?
         get() = when (val state = uiStateFlow.value) {
@@ -57,5 +62,9 @@ class DetailViewModel @Inject constructor(
         }.onFailure {
             _uiStateFlow.emit(DetailState.Error)
         }
+    }
+
+    fun onImageClicked(imageUrl: String) {
+        TODO("Not yet implemented")
     }
 }

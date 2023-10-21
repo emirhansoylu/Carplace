@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingData
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,11 +22,15 @@ class ListingFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val listingAdapter by lazy {
-        ListingAdapter(onItemClicked = { navigateToDetailFragment(item = it) })
+        ListingAdapter(onItemClicked = { viewModel.onItemClicked(item = it) })
     }
 
     private val listingCollector: suspend (PagingData<ListingResponseItem>) -> Unit = {
         listingAdapter.submitData(it)
+    }
+
+    private val navigationCollector: suspend (NavDirections) -> Unit = {
+        findNavController().navigate(it)
     }
 
     override fun onCreateView(
@@ -44,12 +49,9 @@ class ListingFragment : Fragment() {
         }
         viewModel.apply {
             listingFlow.collectLatestWhenStarted(viewLifecycleOwner, listingCollector)
+            navigationFlow.collectLatestWhenStarted(viewLifecycleOwner, navigationCollector)
         }
     }
-
-    private fun navigateToDetailFragment(item: ListingResponseItem) = findNavController().navigate(
-        ListingFragmentDirections.actionListingFragmentToDetailFragment(item.id)
-    )
 
     override fun onDestroyView() {
         super.onDestroyView()

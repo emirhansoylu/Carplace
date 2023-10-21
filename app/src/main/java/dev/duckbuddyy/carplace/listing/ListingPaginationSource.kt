@@ -2,6 +2,8 @@ package dev.duckbuddyy.carplace.listing
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import dev.duckbuddyy.carplace.model.enums.ListSortDirection
+import dev.duckbuddyy.carplace.model.enums.SortType
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
 import dev.duckbuddyy.carplace.network.NetworkRepository
 
@@ -12,8 +14,8 @@ class ListingPaginationSource(
     private val maxDate: String? = null,
     private val minYear: Int? = null,
     private val maxYear: Int? = null,
-    private val sort: Int? = null,
-    private val sortDirection: Int? = null,
+    private val sort: SortType? = null,
+    private val sortDirection: ListSortDirection? = null,
     private val pageSize: Int = 10
 ) : PagingSource<Int, ListingResponseItem>() {
 

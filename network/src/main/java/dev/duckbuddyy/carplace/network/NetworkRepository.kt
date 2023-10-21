@@ -1,6 +1,8 @@
 package dev.duckbuddyy.carplace.network
 
 import dev.duckbuddyy.carplace.model.detail.DetailResponse
+import dev.duckbuddyy.carplace.model.enums.ListSortDirection
+import dev.duckbuddyy.carplace.model.enums.SortType
 import dev.duckbuddyy.carplace.model.listing.ListingResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -31,8 +33,8 @@ class NetworkRepository {
         maxDate: String? = null,
         minYear: Int? = null,
         maxYear: Int? = null,
-        sort: Int? = null,
-        sortDirection: Int? = null,
+        sort: SortType? = null,
+        sortDirection: ListSortDirection? = null,
         skip: Int = 0,
         take: Int = 10
     ): Result<ListingResponse> = withContext(Dispatchers.IO) {
@@ -45,8 +47,8 @@ class NetworkRepository {
                     maxDate?.let { parameters.append("maxDate", it) }
                     minYear?.let { parameters.append("minYear", it.toString()) }
                     maxYear?.let { parameters.append("maxYear", it.toString()) }
-                    sort?.let { parameters.append("sort", it.toString()) }
-                    sortDirection?.let { parameters.append("sortDirection", it.toString()) }
+                    sort?.let { parameters.append("sort", it.sortType) }
+                    sortDirection?.let { parameters.append("sortDirection", it.direction) }
                     parameters.append("skip", skip.toString())
                     parameters.append("take", take.toString())
                 }
