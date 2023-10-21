@@ -9,11 +9,12 @@
     tools:context=".detail.DetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/iv_product_detail"
+            android:id="@+id/iv_detail"
             android:layout_width="@dimen/zero"
             android:layout_height="@dimen/zero"
             android:transitionName="@string/transition_name"
@@ -23,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <include
-            android:id="@+id/rv_detail_property"
+            android:id="@+id/layout_detail"
             layout="@layout/layout_detail"
             android:layout_width="@dimen/zero"
             android:layout_height="@dimen/zero"
@@ -42,14 +43,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include
-        android:id="@+id/layout_product_detail_loading"
+        android:id="@+id/layout_detail_loading"
         layout="@layout/layout_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
 
     <include
-        android:id="@+id/layout_product_detail_error"
+        android:id="@+id/layout_detail_error"
         layout="@layout/layout_error"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
