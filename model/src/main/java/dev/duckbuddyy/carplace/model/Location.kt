@@ -9,4 +9,6 @@ data class Location(
     val cityName: String?,
     @SerialName("townName")
     val townName: String?
-)
+) {
+    override fun toString() = "$townName/$cityName"
+}

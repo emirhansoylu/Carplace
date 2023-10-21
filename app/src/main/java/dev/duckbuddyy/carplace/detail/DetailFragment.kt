@@ -25,24 +25,27 @@ class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
 
-    private var imageSliderAdapter: ImageSliderAdapter? = null
-
     private val uiStateCollector: suspend (DetailState) -> Unit = { state ->
         binding.apply {
             layoutDetailLoading.root.isVisible = state == DetailState.Loading
             layoutDetailError.root.isVisible = state == DetailState.Error
             clDetail.isVisible = state is DetailState.Success
             if (state is DetailState.Success) {
-                imageSliderAdapter = ImageSliderAdapter(
+                ImageSliderAdapter(
                     imageUrls = state.detail.getSizedPhotos(),
                     onItemClicked = { viewModel.onImageClicked(imageUrl = it) }
-                )
-                vpImage.adapter = imageSliderAdapter
-                layoutDetail.tvDetailName.text = state.detail.title
+                ).also { vpImage.adapter = it }
+
+                PropertyAdapter(state.detail.extendedProperties).also {
+                    layoutDetail.rvDetailProperty.adapter = it
+                }
+
+                layoutDetail.tvDetailTitle.text = state.detail.title
+                layoutDetail.tvUserName.text = state.detail.userInfo.nameSurname
+                layoutDetail.tvLocation.text = state.detail.location.toString()
+                layoutDetail.tvModelName.text = state.detail.modelName
                 layoutDetail.tvDetailDescription.text = state.detail.escapedText
                 layoutDetail.tvDetailPrice.text = state.detail.actualPrice
-
-
             }
         }
     }

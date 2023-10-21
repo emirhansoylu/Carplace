@@ -45,6 +45,14 @@ data class DetailResponse(
 
     val actualPrice: String get() = priceFormatted ?: price.toString()
 
+    val extendedProperties
+        get() = mutableListOf(
+            Property(
+                name = "date",
+                value = dateFormatted ?: date
+            )
+        ).apply { addAll(properties) }
+
     val escapedText: String?
         get() = text?.let {
             if (Build.VERSION.SDK_INT >= 24) {
