@@ -80,7 +80,7 @@
                 android:layout_marginTop="@dimen/high_margin"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_model_name"
-                tools:text="This is a description" />
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt nec dui molestie finibus. Proin augue mi, elementum non laoreet vitae, pretium vitae tellus. In dignissim, dolor sed suscipit tincidunt, erat eros dignissim mi, sodales laoreet sem est quis neque. Maecenas id libero mauris. Maecenas nisi eros, lacinia eu nulla a, fermentum tempor mi. Nullam blandit nunc fringilla diam feugiat pulvinar. Donec sit amet odio aliquam erat faucibus interdum at non nisi. Mauris dignissim nisl vitae posuere vehicula. Suspendisse ac justo vitae nibh consequat mattis. Duis dignissim elit nec hendrerit ullamcorper. Praesent vel scelerisque risus, et aliquet metus. Pellentesque dui velit, cursus et turpis eget, scelerisque suscipit libero. Suspendisse lacus justo, bibendum vel lectus eget, dapibus pellentesque eros." />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_detail_property"
@@ -101,7 +101,7 @@
         android:id="@+id/btn_call"
         android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/high_margin"
+        android:layout_marginHorizontal="@dimen/high_margin"
         android:text="@string/text_call"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

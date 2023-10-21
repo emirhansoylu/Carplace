@@ -31,7 +31,10 @@ class PropertyAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(property: Property) = binding.apply {
-            tvSpecName.text = property.name
+            if (property.name == null && property.value == null) {
+                return@apply
+            }
+            tvSpecName.text = property.name?.uppercase()
             tvSpecDescription.text = property.value
         }
     }
