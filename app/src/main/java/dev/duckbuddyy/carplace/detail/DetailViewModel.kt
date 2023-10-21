@@ -43,16 +43,6 @@ class DetailViewModel @Inject constructor(
         getDetail()
     }
 
-    fun onCallClicked() = viewModelScope.launch {
-        val phoneNumber = detail?.userInfo?.phone ?: return@launch
-
-        val dialIntent = Intent(Intent.ACTION_DIAL).apply {
-            data = Uri.parse("tel:$phoneNumber")
-        }
-
-        _launchIntentFlow.emit(dialIntent)
-    }
-
     private fun getDetail() = viewModelScope.launch {
         _uiStateFlow.emit(DetailState.Loading)
         repository.getDetail(
@@ -64,7 +54,25 @@ class DetailViewModel @Inject constructor(
         }
     }
 
-    fun onImageClicked(imageUrl: String) {
-        TODO("Not yet implemented")
+    fun onCallClicked() = viewModelScope.launch {
+        val phoneNumber = detail?.userInfo?.phone ?: return@launch
+
+        val dialIntent = Intent(Intent.ACTION_DIAL).apply {
+            data = Uri.parse("tel:$phoneNumber")
+        }
+
+        _launchIntentFlow.emit(dialIntent)
+    }
+
+    fun onImageClicked(imageUrl: String) = viewModelScope.launch {
+        if(detail == null) {
+            return@launch
+        }
+
+        _navigationFlow.emit(
+            DetailFragmentDirections.actionDetailFragmentToPhotoFragment(
+                photos = detail!!.photos.toTypedArray()
+            )
+        )
     }
 }

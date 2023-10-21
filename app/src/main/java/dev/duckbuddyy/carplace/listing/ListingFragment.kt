@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingData
 import dagger.hilt.android.AndroidEntryPoint
 import dev.duckbuddyy.carplace.databinding.FragmentListingBinding
-import dev.duckbuddyy.carplace.domain.collectLatestWhenStarted
+import dev.duckbuddyy.carplace.collectLatestWhenStarted
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
 
 @AndroidEntryPoint

@@ -2,11 +2,9 @@ package dev.duckbuddyy.carplace.detail
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.text.HtmlCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,9 +12,7 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.duckbuddyy.carplace.databinding.FragmentDetailBinding
-import dev.duckbuddyy.carplace.domain.collectLatestWhenStarted
-import dev.duckbuddyy.carplace.domain.load
-import dev.duckbuddyy.carplace.model.enums.PhotoSize
+import dev.duckbuddyy.carplace.collectLatestWhenStarted
 
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
