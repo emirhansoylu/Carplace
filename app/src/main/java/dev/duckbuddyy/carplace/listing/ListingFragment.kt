@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import dagger.hilt.android.AndroidEntryPoint
 import dev.duckbuddyy.carplace.collectLatestWhenStarted
@@ -22,7 +24,27 @@ class ListingFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val listingAdapter by lazy {
-        ListingAdapter(onItemClicked = { viewModel.onItemClicked(item = it) })
+        ListingAdapter(
+            onItemClicked = { viewModel.onItemClicked(item = it) }
+        ).apply {
+            loadStateFlow.collectLatestWhenStarted(viewLifecycleOwner) { loadStates ->
+                val isLoading = listOf(
+                    loadStates.refresh,
+                    loadStates.append,
+                    loadStates.prepend
+                ).any { it is LoadState.Loading }
+
+                val hasError = listOf(
+                    loadStates.refresh,
+                    loadStates.append,
+                    loadStates.prepend
+                ).any { it is LoadState.Error }
+
+                binding.srlListing.isRefreshing = isLoading
+                binding.layoutListingError.root.isVisible = hasError
+                binding.rvListing.isVisible = !hasError
+            }
+        }
     }
 
     private val listingCollector: suspend (PagingData<ListingResponseItem>) -> Unit = {
@@ -42,6 +64,7 @@ class ListingFragment : Fragment() {
 
         binding.apply {
             rvListing.adapter = listingAdapter
+            srlListing.setOnRefreshListener { listingAdapter.refresh() }
         }
 
         viewModel.apply {
