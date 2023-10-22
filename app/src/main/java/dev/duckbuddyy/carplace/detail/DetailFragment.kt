@@ -27,9 +27,9 @@ class DetailFragment : Fragment() {
             layoutDetailError.root.isVisible = state == DetailState.Error
             clDetail.isVisible = state is DetailState.Success
             if (state is DetailState.Success) {
-                ImageSliderAdapter(
+                DetailImageAdapter(
                     imageUrls = state.detail.getSizedPhotos(),
-                    onItemClicked = { viewModel.onImageClicked(imageUrl = it) }
+                    onItemClicked = { viewModel.onImageClicked(imagePosition = it) }
                 ).also { vpImage.adapter = it }
 
                 PropertyAdapter(state.detail.extendedProperties).also {
@@ -55,7 +55,8 @@ class DetailFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailBinding.inflate(layoutInflater, container, false)

@@ -38,5 +38,8 @@
         <argument
             android:name="photos"
             app:argType="string[]" />
+        <argument
+            android:name="imagePosition"
+            app:argType="integer" />
     </fragment>
 </navigation>

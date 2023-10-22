@@ -3,6 +3,7 @@
     <dimen name="zero">0dp</dimen>
 
     <dimen name="corner_radius">8dp</dimen>
+    <dimen name="corner_radius_extra">24dp</dimen>
     <dimen name="icon_size">64dp</dimen>
 
     <dimen name="small_margin">4dp</dimen>

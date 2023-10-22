@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.duckbuddyy.carplace.model.detail.DetailResponse
-import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
 import dev.duckbuddyy.carplace.network.NetworkRepository
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -64,14 +63,15 @@ class DetailViewModel @Inject constructor(
         _launchIntentFlow.emit(dialIntent)
     }
 
-    fun onImageClicked(imageUrl: String) = viewModelScope.launch {
+    fun onImageClicked(imagePosition: Int) = viewModelScope.launch {
         if(detail == null) {
             return@launch
         }
 
         _navigationFlow.emit(
             DetailFragmentDirections.actionDetailFragmentToPhotoFragment(
-                photos = detail!!.photos.toTypedArray()
+                photos = detail!!.photos.toTypedArray(),
+                imagePosition = imagePosition
             )
         )
     }

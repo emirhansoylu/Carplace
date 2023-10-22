@@ -6,9 +6,9 @@ import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
 import dev.duckbuddyy.carplace.load
 
-class ImageSliderAdapter(
+class DetailImageAdapter(
     private val imageUrls: List<String>,
-    private val onItemClicked: (String) -> Unit
+    private val onItemClicked: (Int) -> Unit
 ) : PagerAdapter() {
     override fun getCount(): Int = imageUrls.size
 
@@ -18,7 +18,7 @@ class ImageSliderAdapter(
         val imageView = ImageView(container.context).apply {
             val imageUrl = imageUrls[position]
             load(imageUrl)
-            setOnClickListener { onItemClicked(imageUrl) }
+            setOnClickListener { onItemClicked(position) }
         }
 
         container.addView(imageView)

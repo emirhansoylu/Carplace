@@ -25,8 +25,9 @@ class PhotoViewModel @Inject constructor(
 
     private fun initializePhotos() = viewModelScope.launch {
         val photos = arguments.photos
+        val imagePosition = arguments.imagePosition
         if (photos.isNotEmpty()) {
-            _uiStateFlow.emit(PhotoState.Success(photos))
+            _uiStateFlow.emit(PhotoState.Success(photos, imagePosition))
         } else {
             _uiStateFlow.emit(PhotoState.Error)
         }
