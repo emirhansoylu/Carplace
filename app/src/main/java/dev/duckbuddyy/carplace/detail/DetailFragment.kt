@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import dev.duckbuddyy.carplace.databinding.FragmentDetailBinding
 import dev.duckbuddyy.carplace.collectLatestWhenStarted
+import dev.duckbuddyy.carplace.databinding.FragmentDetailBinding
+import dev.duckbuddyy.carplace.photo.PhotoFragment.Companion.KEY_POSITION
+import dev.duckbuddyy.carplace.photo.PhotoFragment.Companion.KEY_RESULT
 
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
@@ -30,7 +33,7 @@ class DetailFragment : Fragment() {
                 DetailImageAdapter(
                     imageUrls = state.detail.getSizedPhotos(),
                     onItemClicked = { viewModel.onImageClicked(imagePosition = it) }
-                ).also { vpImage.adapter = it }
+                ).also { vpDetail.adapter = it }
 
                 PropertyAdapter(state.detail.extendedProperties).also {
                     layoutDetail.rvDetailProperty.adapter = it
@@ -60,19 +63,24 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         binding.apply {
             layoutDetail.btnCall.setOnClickListener { viewModel.onCallClicked() }
         }
+
         viewModel.apply {
             uiStateFlow.collectLatestWhenStarted(viewLifecycleOwner, uiStateCollector)
             launchIntentFlow.collectLatestWhenStarted(viewLifecycleOwner, launchIntentCollector)
             navigationFlow.collectLatestWhenStarted(viewLifecycleOwner, navigationCollector)
         }
+        setFragmentResultListener(KEY_RESULT) { key, bundle ->
+            val viewPagerPosition = bundle.getInt(KEY_POSITION, -1)
+            if (viewPagerPosition != -1) {
+                binding.vpDetail.currentItem = viewPagerPosition
+            }
+        }
+
+        return binding.root
     }
 
     override fun onDestroyView() {

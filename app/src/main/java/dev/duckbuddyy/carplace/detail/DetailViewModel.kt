@@ -64,7 +64,7 @@ class DetailViewModel @Inject constructor(
     }
 
     fun onImageClicked(imagePosition: Int) = viewModelScope.launch {
-        if(detail == null) {
+        if (detail == null) {
             return@launch
         }
 

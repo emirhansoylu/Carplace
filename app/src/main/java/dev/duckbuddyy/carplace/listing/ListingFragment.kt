@@ -10,8 +10,8 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingData
 import dagger.hilt.android.AndroidEntryPoint
-import dev.duckbuddyy.carplace.databinding.FragmentListingBinding
 import dev.duckbuddyy.carplace.collectLatestWhenStarted
+import dev.duckbuddyy.carplace.databinding.FragmentListingBinding
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
 
 @AndroidEntryPoint
@@ -39,18 +39,17 @@ class ListingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentListingBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         binding.apply {
             rvListing.adapter = listingAdapter
         }
+
         viewModel.apply {
             listingFlow.collectLatestWhenStarted(viewLifecycleOwner, listingCollector)
             navigationFlow.collectLatestWhenStarted(viewLifecycleOwner, navigationCollector)
         }
+
+        return binding.root
     }
 
     override fun onDestroyView() {

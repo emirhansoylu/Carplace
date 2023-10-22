@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <androidx.viewpager.widget.ViewPager
-            android:id="@+id/vp_image"
+            android:id="@+id/vp_detail"
             android:layout_width="@dimen/zero"
             android:layout_height="@dimen/zero"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +30,7 @@
             android:layout_margin="@dimen/high_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/vp_image"
+            app:layout_constraintStart_toEndOf="@+id/vp_detail"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
