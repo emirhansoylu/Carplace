@@ -37,9 +37,10 @@ class DetailFragment : Fragment() {
 
                 PropertyAdapter(state.detail.extendedProperties).also {
                     layoutDetail.rvDetailProperty.adapter = it
+                    layoutDetail.rvDetailProperty.suppressLayout(true)
                 }
 
-                layoutDetail.tvDetailTitle.text = state.detail.title
+                tvDetailTitle.text = state.detail.title
                 layoutDetail.tvUserName.text = state.detail.userInfo.nameSurname
                 layoutDetail.tvLocation.text = state.detail.location.toString()
                 layoutDetail.tvModelName.text = state.detail.modelName

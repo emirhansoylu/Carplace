@@ -65,6 +65,7 @@ class ListingFragment : Fragment() {
         binding.apply {
             rvListing.adapter = listingAdapter
             srlListing.setOnRefreshListener { listingAdapter.refresh() }
+            srlListing.isRefreshing = true
         }
 
         viewModel.apply {
