@@ -1,5 +1,6 @@
-package dev.duckbuddyy.carplace.network
+package dev.duckbuddyy.carplace.network_ktor
 
+import dev.duckbuddyy.carplace.model.INetworkRepository
 import dev.duckbuddyy.carplace.model.detail.DetailResponse
 import dev.duckbuddyy.carplace.model.enums.ListSortDirection
 import dev.duckbuddyy.carplace.model.enums.SortType
@@ -11,7 +12,7 @@ import io.ktor.http.HttpMethod
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class NetworkRepository {
+class KtorRepository : INetworkRepository {
     internal var client: HttpClient = NetworkModule.httpClient
 
     /**
@@ -27,16 +28,16 @@ class NetworkRepository {
      * @param skip Skips the size of element.
      * @param take Takes the size of element.
      */
-    suspend fun getListing(
-        categoryId: Int? = null,
-        minDate: String? = null,
-        maxDate: String? = null,
-        minYear: Int? = null,
-        maxYear: Int? = null,
-        sort: SortType? = null,
-        sortDirection: ListSortDirection? = null,
-        skip: Int = 0,
-        take: Int = 10
+    override suspend fun getListing(
+        categoryId: Int?,
+        minDate: String?,
+        maxDate: String?,
+        minYear: Int?,
+        maxYear: Int?,
+        sort: SortType?,
+        sortDirection: ListSortDirection?,
+        skip: Int,
+        take: Int
     ): Result<ListingResponse> = withContext(Dispatchers.IO) {
         runCatching {
             client.get(URL_LISTING) {
@@ -61,7 +62,7 @@ class NetworkRepository {
      *
      * @param id Identifier of the car detail that that retrieved from network.
      */
-    suspend fun getDetail(
+    override suspend fun getDetail(
         id: Int
     ): Result<DetailResponse> = withContext(Dispatchers.IO) {
         runCatching {

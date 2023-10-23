@@ -2,13 +2,13 @@ package dev.duckbuddyy.carplace.listing
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import dev.duckbuddyy.carplace.model.INetworkRepository
 import dev.duckbuddyy.carplace.model.enums.ListSortDirection
 import dev.duckbuddyy.carplace.model.enums.SortType
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
-import dev.duckbuddyy.carplace.network.NetworkRepository
 
 class ListingPaginationSource(
-    private val repository: NetworkRepository,
+    private val repository: INetworkRepository,
     private val categoryId: Int? = null,
     private val minDate: String? = null,
     private val maxDate: String? = null,

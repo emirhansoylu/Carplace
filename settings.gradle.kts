@@ -15,5 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Carplace"
 include(":app")
-include(":network")
+include(":network-ktor")
 include(":model")
+include(":network-retrofit")

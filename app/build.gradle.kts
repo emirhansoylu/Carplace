@@ -17,11 +17,13 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "HTTP_CLIENT", "\"${project.property("HTTP_CLIENT")}\"")
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
     buildTypes {
         release {
@@ -43,7 +45,8 @@ android {
 
 dependencies {
     implementation(project(":model"))
-    implementation(project(":network"))
+    implementation(project(":network-ktor"))
+    implementation(project(":network-retrofit"))
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.core:core-splashscreen:1.0.1")

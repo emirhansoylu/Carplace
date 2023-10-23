@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "dev.duckbuddyy.carplace.network"
+    namespace = "dev.duckbuddyy.carplace.network_ktor"
     compileSdk = 34
 
     defaultConfig {

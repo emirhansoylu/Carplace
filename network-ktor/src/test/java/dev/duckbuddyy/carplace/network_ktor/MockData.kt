@@ -1,4 +1,4 @@
-package dev.duckbuddyy.carplace.network
+package dev.duckbuddyy.carplace.network_ktor
 
 import dev.duckbuddyy.carplace.model.Category
 import dev.duckbuddyy.carplace.model.Location

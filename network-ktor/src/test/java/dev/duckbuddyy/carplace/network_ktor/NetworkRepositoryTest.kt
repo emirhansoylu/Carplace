@@ -1,9 +1,9 @@
-package dev.duckbuddyy.carplace.network
+package dev.duckbuddyy.carplace.network_ktor
 
 import dev.duckbuddyy.carplace.model.detail.DetailResponse
 import dev.duckbuddyy.carplace.model.listing.ListingResponse
-import dev.duckbuddyy.carplace.network.NetworkRepository.URL.URL_DETAIL
-import dev.duckbuddyy.carplace.network.NetworkRepository.URL.URL_LISTING
+import dev.duckbuddyy.carplace.network_ktor.KtorRepository.URL.URL_DETAIL
+import dev.duckbuddyy.carplace.network_ktor.KtorRepository.URL.URL_LISTING
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
@@ -19,7 +19,7 @@ import org.junit.Test
 import org.junit.Before
 
 class NetworkRepositoryTest {
-    private lateinit var networkRepository: NetworkRepository
+    private lateinit var ktorRepository: KtorRepository
 
     @Before
     fun setup() {
@@ -34,8 +34,8 @@ class NetworkRepositoryTest {
                 headers = headersOf(HttpHeaders.ContentType, "application/json")
             )
         }
-        networkRepository = NetworkRepository()
-        networkRepository.client = HttpClient(mockEngine) {
+        ktorRepository = KtorRepository()
+        ktorRepository.client = HttpClient(mockEngine) {
             install(ContentNegotiation) {
                 json(Json {
                     prettyPrint = true
@@ -48,7 +48,7 @@ class NetworkRepositoryTest {
 
     @Test
     fun getListingFromNetwork(): Unit = runBlocking {
-        networkRepository.getListing().onSuccess { networkListing : ListingResponse ->
+        ktorRepository.getListing().onSuccess { networkListing : ListingResponse ->
             assert(networkListing == MockData.mockListingObject) {
                 val differences = networkListing.subtract(MockData.mockListingObject)
                 "Network listing must be same as mock listing.\nThe lists has ${differences.size} differences.\nThey are: $differences"
@@ -62,7 +62,7 @@ class NetworkRepositoryTest {
 
     @Test
     fun getDetailFromNetwork(): Unit = runBlocking {
-        networkRepository.getDetail(
+        ktorRepository.getDetail(
             id = 7333920
         ).onSuccess { networkDetail: DetailResponse ->
             assert(networkDetail == MockData.mockDetailObject) {
