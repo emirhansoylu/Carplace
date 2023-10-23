@@ -64,6 +64,7 @@ class ListingFragment : Fragment() {
 
         binding.apply {
             rvListing.adapter = listingAdapter
+            layoutListingError.retryButton.setOnClickListener { listingAdapter.refresh() }
             srlListing.setOnRefreshListener { listingAdapter.refresh() }
             srlListing.isRefreshing = true
         }

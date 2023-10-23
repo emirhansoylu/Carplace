@@ -37,6 +37,13 @@ class RetrofitRepository : INetworkRepository {
     ): Result<ListingResponse> = withContext(Dispatchers.IO) {
         runCatching {
             apiService.getListing(
+                categoryId = categoryId?.toString(),
+                minDate = minDate,
+                maxDate = maxDate,
+                minYear = minYear?.toString(),
+                maxYear = maxYear?.toString(),
+                sort = sort?.sortType,
+                sortDirection = sortDirection?.direction,
                 skip = skip.toString(),
                 take = take.toString()
             )

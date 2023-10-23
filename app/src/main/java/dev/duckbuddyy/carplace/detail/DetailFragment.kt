@@ -74,6 +74,7 @@ class DetailFragment : Fragment() {
             launchIntentFlow.collectLatestWhenStarted(viewLifecycleOwner, launchIntentCollector)
             navigationFlow.collectLatestWhenStarted(viewLifecycleOwner, navigationCollector)
         }
+
         setFragmentResultListener(KEY_RESULT) { key, bundle ->
             val viewPagerPosition = bundle.getInt(KEY_POSITION, -1)
             if (viewPagerPosition != -1) {
