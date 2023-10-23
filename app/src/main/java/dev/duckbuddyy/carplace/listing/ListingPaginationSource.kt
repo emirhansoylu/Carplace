@@ -2,6 +2,7 @@ package dev.duckbuddyy.carplace.listing
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import dev.duckbuddyy.carplace.log
 import dev.duckbuddyy.carplace.model.INetworkRepository
 import dev.duckbuddyy.carplace.model.enums.ListSortDirection
 import dev.duckbuddyy.carplace.model.enums.SortType
@@ -42,6 +43,7 @@ class ListingPaginationSource(
             take = params.loadSize,
             skip = offset
         ).getOrElse {
+            it.log()
             return LoadResult.Error(it)
         }
 

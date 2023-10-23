@@ -15,8 +15,8 @@ import io.ktor.serialization.kotlinx.json.json
 import io.ktor.utils.io.ByteReadChannel
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
-import org.junit.Test
 import org.junit.Before
+import org.junit.Test
 
 class NetworkRepositoryTest {
     private lateinit var ktorRepository: KtorRepository
@@ -48,7 +48,7 @@ class NetworkRepositoryTest {
 
     @Test
     fun getListingFromNetwork(): Unit = runBlocking {
-        ktorRepository.getListing().onSuccess { networkListing : ListingResponse ->
+        ktorRepository.getListing().onSuccess { networkListing: ListingResponse ->
             assert(networkListing == MockData.mockListingObject) {
                 val differences = networkListing.subtract(MockData.mockListingObject)
                 "Network listing must be same as mock listing.\nThe lists has ${differences.size} differences.\nThey are: $differences"

@@ -34,7 +34,7 @@
         android:id="@+id/photoFragment"
         android:name="dev.duckbuddyy.carplace.photo.PhotoFragment"
         android:label="fragment_photo"
-        tools:layout="@layout/fragment_photo" >
+        tools:layout="@layout/fragment_photo">
         <argument
             android:name="photos"
             app:argType="string[]" />

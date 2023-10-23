@@ -10,7 +10,6 @@ import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.duckbuddyy.carplace.model.INetworkRepository
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
-import dev.duckbuddyy.carplace.network_ktor.KtorRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow

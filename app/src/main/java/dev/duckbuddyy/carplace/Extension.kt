@@ -1,5 +1,6 @@
 package dev.duckbuddyy.carplace
 
+import android.util.Log
 import android.widget.ImageView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -44,4 +45,10 @@ fun ViewPager.setOnPageChangedListener(onPageChanged: (Int) -> Unit) {
 
         override fun onPageScrollStateChanged(state: Int) = Unit
     })
+}
+
+fun Throwable.log() {
+    if (BuildConfig.DEBUG) {
+        Log.e("Carplace", message.orEmpty())
+    }
 }

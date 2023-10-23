@@ -18,16 +18,206 @@ internal object MockData {
     """.trimIndent()
 
     val mockListingObject: ListingResponse = listOf(
-        ListingResponseItem(category=Category(id=12799, name="otomobil/volkswagen-new-beetle-1-4-tsi-design"), date="2020-11-30T00:00:00", dateFormatted="30 Kasım 2020", id=7333920, location=Location(cityName="Adana", townName="Seyhan"), modelName="Beetle 1.4 TSI Design DSG", photo="https://arbstorage.mncdn.com/ilanfotograflari/2017/08/03/7333920/641e33f6-541f-40f3-8ba3-42960e563078_image_for_silan_7333920_{0}.jpg", price=350000, priceFormatted="350000 TL", properties= listOf(Property(name="km", value="23000"), Property(name="color", value="Kırmızı"), Property(name="year", value="2013")), title="VW BEETLE 14 TSİ RLİNE"),
-        ListingResponseItem(category=Category(id=12212, name="otomobil/volkswagen-scirocco-1-4-tsi-sportline"), date="2020-12-23T00:00:00", dateFormatted="23 Aralık 2020", id=16253376, location=Location(cityName="İstanbul", townName="Ümraniye"), modelName="Scirocco 1.4 TSI Sportline Manuel", photo="https://arbstorage.mncdn.com/ilanfotograflari/2020/12/23/16253376/8bef8606-dec3-47c1-9d53-a1862b110e9f_image_for_silan_16253376_{0}.jpg", price=163000, priceFormatted="163000 TL", properties= listOf(Property(name="km", value="72000"), Property(name="color", value="Beyaz"), Property(name="year", value="2012")), title="ORJINAL  MUAYENE SIFIR"),
-        ListingResponseItem(category=Category(id=18449, name="otomobil/fiat-linea-1-3-multijet-active-plus"), date="2020-12-23T00:00:00", dateFormatted="23 Aralık 2020", id=16251667, location=Location(cityName="Burdur", townName="Merkez"), modelName="Linea 1.3 MultiJet Active Plus Manuel", photo="https://arbstorage.mncdn.com/ilanfotograflari/2020/12/23/16251667/82e573fd-e345-4c55-bf13-091b3de06c19_image_for_silan_16251667_{0}.jpg", price=88500, priceFormatted="88500 TL", properties= listOf(Property(name="km", value="114350"), Property(name="color", value="Beyaz"), Property(name="year", value="2012")), title="Fiat Linea 1.3 Multijet Active Plus 2012 Model - 114.500 km"),
-        ListingResponseItem(category=Category(id=22387, name="otomobil/hyundai-i30-1-6-gdi-style"), date="2020-12-22T00:00:00", dateFormatted="22 Aralık 2020", id=16249630, location=Location(cityName="İstanbul", townName="Silivri"), modelName="i30 1.6 GDI Style Manuel", photo="https://arbstorage.mncdn.com/ilanfotograflari/2020/12/22/16249630/3a3180b3-52bb-40ce-acfc-f72f38b96b4b_image_for_silan_16249630_{0}.jpg", price=165000, priceFormatted="165000 TL", properties= listOf(Property(name="km", value="130000"), Property(name="color", value="Kahverengi"), Property(name="year", value="2012")), title="Sahibinden Hyundai i30 1.6 GDi Style 2012 Model "),
-        ListingResponseItem(category=Category(id=80769, name="otomobil/renault-r-19-1-6-europa-rte"), date="2020-12-22T00:00:00", dateFormatted="22 Aralık 2020", id=16249527, location=Location(cityName="Adıyaman", townName="Merkez"), modelName="R19 Europa 1.6 RT Manuel", photo="https://arbstorage.mncdn.com/ilanfotograflari/2020/12/22/16249527/22da8dfe-445b-47ff-8995-94f7dc6c3439_image_for_silan_16249527_{0}.jpg", price=52500, priceFormatted="52500 TL", properties= listOf(Property(name="km", value="225000"), Property(name="color", value=""), Property(name="year", value="2000")), title="Sahibinden Renault R 19 1.6 Europa RTE 2000 Model"),
-        ListingResponseItem(category=Category(id=21757, name="otomobil/hyundai-i20-1-2-mpi-jump"), date="2020-12-22T00:00:00", dateFormatted="22 Aralık 2020", id=16249454, location=Location(cityName="Sakarya", townName="Kocaali"), modelName="i20 1.2 MPI Jump Manuel", photo="https://arbstorage.mncdn.com/ilanfotograflari/2020/12/22/16249454/0e72ce3d-00bd-41d3-b704-5b97d6522065_image_for_silan_16249454_{0}.jpg", price=120000, priceFormatted="120000 TL", properties= listOf(Property(name="km", value="55500"), Property(name="color", value=""), Property(name="year", value="2014")), title="Sahibinden Hyundai i20 1.2 MPI Jump 2014 Model "),
-        ListingResponseItem(category=Category(id=21630, name="otomobil/hyundai-accent-1-3-ls"), date="2020-12-22T00:00:00", dateFormatted="22 Aralık 2020", id=16248481, location=Location(cityName="Adana", townName="Yüreğir"), modelName="Accent 1.3 LS Servo Manuel", photo="https://arbstorage.mncdn.com/ilanfotograflari/2020/12/22/16248481/bf74824b-f7d3-4079-9b6a-eb9360ae288c_image_for_silan_16248481_{0}.jpg", price=40000, priceFormatted="40000 TL", properties= listOf(Property(name="km", value="173000"), Property(name="color", value="Mavi"), Property(name="year", value="1997")), title="Sahibinden Hyundai Accent 1.3 LS 1997 Model "),
-        ListingResponseItem(category=Category(id=4265, name="otomobil/peugeot-206-1-4-comfort"), date="2020-12-22T00:00:00", dateFormatted="22 Aralık 2020", id=16248342, location=Location(cityName="Kayseri", townName="Kocasinan"), modelName="206 1.4 Comfort Manuel", photo="https://arbstorage.mncdn.com/ilanfotograflari/2020/12/22/16248342/5b672e6d-9920-4338-bf7d-c1558ec66ae9_image_for_silan_16248342_{0}.jpg", price=68750, priceFormatted="68750 TL", properties= listOf(Property(name="km", value="127700"), Property(name="color", value="Gri (Gümüş)"), Property(name="year", value="2009")), title="Sahibinden Peugeot 206 1.4 Comfort 2009 Model "),
-        ListingResponseItem(category=Category(id=17797, name="otomobil/fiat-egea-1-3-multijet-easy"), date="2020-12-22T00:00:00", dateFormatted="22 Aralık 2020", id=16247491, location=Location(cityName="Mersin", townName="Yenişehir"), modelName="Egea 1.3 MultiJet Easy Manuel", photo="https://arbstorage.mncdn.com/ilanfotograflari/2020/12/22/16247491/6cda92c5-b65e-47e1-b7b5-8067714f5cd8_image_for_silan_16247491_{0}.jpg", price=149000, priceFormatted="149000 TL", properties= listOf(Property(name="km", value="25000"), Property(name="color", value="Beyaz"), Property(name="year", value="2019")), title="2019+MODEL+FİAT+EGEA+1.3 EASY+%18FATURALI+HATASIZ+BOYASIZ"),
-        ListingResponseItem(category=Category(id=71803, name="arazi-suv-pick-up/dacia-duster-1-5-dci-prestige"), date="2020-12-22T00:00:00", dateFormatted="22 Aralık 2020", id=16246847, location=Location(cityName="Ankara", townName="Altındağ"), modelName="Duster 1.5 DCI 4x4 Prestige Manuel", photo="https://arbstorage.mncdn.com/ilanfotograflari/2020/12/22/16246847/dd1a0938-364a-4791-911a-9f2c4d928406_image_for_silan_16246847_{0}.jpg", price=285000, priceFormatted="285000 TL", properties= listOf(Property(name="km", value="39000"), Property(name="color", value=""), Property(name="year", value="2018")), title="Sahibinden Dacia Duster 1.5 dCi Prestige 2018 Model Ankara"),
+        ListingResponseItem(
+            category = Category(
+                id = 12799,
+                name = "otomobil/volkswagen-new-beetle-1-4-tsi-design"
+            ),
+            date = "2020-11-30T00:00:00",
+            dateFormatted = "30 Kasım 2020",
+            id = 7333920,
+            location = Location(cityName = "Adana", townName = "Seyhan"),
+            modelName = "Beetle 1.4 TSI Design DSG",
+            photo = "https://arbstorage.mncdn.com/ilanfotograflari/2017/08/03/7333920/641e33f6-541f-40f3-8ba3-42960e563078_image_for_silan_7333920_{0}.jpg",
+            price = 350000,
+            priceFormatted = "350000 TL",
+            properties = listOf(
+                Property(name = "km", value = "23000"),
+                Property(name = "color", value = "Kırmızı"),
+                Property(name = "year", value = "2013")
+            ),
+            title = "VW BEETLE 14 TSİ RLİNE"
+        ),
+        ListingResponseItem(
+            category = Category(
+                id = 12212,
+                name = "otomobil/volkswagen-scirocco-1-4-tsi-sportline"
+            ),
+            date = "2020-12-23T00:00:00",
+            dateFormatted = "23 Aralık 2020",
+            id = 16253376,
+            location = Location(cityName = "İstanbul", townName = "Ümraniye"),
+            modelName = "Scirocco 1.4 TSI Sportline Manuel",
+            photo = "https://arbstorage.mncdn.com/ilanfotograflari/2020/12/23/16253376/8bef8606-dec3-47c1-9d53-a1862b110e9f_image_for_silan_16253376_{0}.jpg",
+            price = 163000,
+            priceFormatted = "163000 TL",
+            properties = listOf(
+                Property(name = "km", value = "72000"),
+                Property(name = "color", value = "Beyaz"),
+                Property(name = "year", value = "2012")
+            ),
+            title = "ORJINAL  MUAYENE SIFIR"
+        ),
+        ListingResponseItem(
+            category = Category(
+                id = 18449,
+                name = "otomobil/fiat-linea-1-3-multijet-active-plus"
+            ),
+            date = "2020-12-23T00:00:00",
+            dateFormatted = "23 Aralık 2020",
+            id = 16251667,
+            location = Location(cityName = "Burdur", townName = "Merkez"),
+            modelName = "Linea 1.3 MultiJet Active Plus Manuel",
+            photo = "https://arbstorage.mncdn.com/ilanfotograflari/2020/12/23/16251667/82e573fd-e345-4c55-bf13-091b3de06c19_image_for_silan_16251667_{0}.jpg",
+            price = 88500,
+            priceFormatted = "88500 TL",
+            properties = listOf(
+                Property(name = "km", value = "114350"),
+                Property(name = "color", value = "Beyaz"),
+                Property(name = "year", value = "2012")
+            ),
+            title = "Fiat Linea 1.3 Multijet Active Plus 2012 Model - 114.500 km"
+        ),
+        ListingResponseItem(
+            category = Category(
+                id = 22387,
+                name = "otomobil/hyundai-i30-1-6-gdi-style"
+            ),
+            date = "2020-12-22T00:00:00",
+            dateFormatted = "22 Aralık 2020",
+            id = 16249630,
+            location = Location(cityName = "İstanbul", townName = "Silivri"),
+            modelName = "i30 1.6 GDI Style Manuel",
+            photo = "https://arbstorage.mncdn.com/ilanfotograflari/2020/12/22/16249630/3a3180b3-52bb-40ce-acfc-f72f38b96b4b_image_for_silan_16249630_{0}.jpg",
+            price = 165000,
+            priceFormatted = "165000 TL",
+            properties = listOf(
+                Property(name = "km", value = "130000"),
+                Property(name = "color", value = "Kahverengi"),
+                Property(name = "year", value = "2012")
+            ),
+            title = "Sahibinden Hyundai i30 1.6 GDi Style 2012 Model "
+        ),
+        ListingResponseItem(
+            category = Category(
+                id = 80769,
+                name = "otomobil/renault-r-19-1-6-europa-rte"
+            ),
+            date = "2020-12-22T00:00:00",
+            dateFormatted = "22 Aralık 2020",
+            id = 16249527,
+            location = Location(cityName = "Adıyaman", townName = "Merkez"),
+            modelName = "R19 Europa 1.6 RT Manuel",
+            photo = "https://arbstorage.mncdn.com/ilanfotograflari/2020/12/22/16249527/22da8dfe-445b-47ff-8995-94f7dc6c3439_image_for_silan_16249527_{0}.jpg",
+            price = 52500,
+            priceFormatted = "52500 TL",
+            properties = listOf(
+                Property(name = "km", value = "225000"),
+                Property(name = "color", value = ""),
+                Property(name = "year", value = "2000")
+            ),
+            title = "Sahibinden Renault R 19 1.6 Europa RTE 2000 Model"
+        ),
+        ListingResponseItem(
+            category = Category(
+                id = 21757,
+                name = "otomobil/hyundai-i20-1-2-mpi-jump"
+            ),
+            date = "2020-12-22T00:00:00",
+            dateFormatted = "22 Aralık 2020",
+            id = 16249454,
+            location = Location(cityName = "Sakarya", townName = "Kocaali"),
+            modelName = "i20 1.2 MPI Jump Manuel",
+            photo = "https://arbstorage.mncdn.com/ilanfotograflari/2020/12/22/16249454/0e72ce3d-00bd-41d3-b704-5b97d6522065_image_for_silan_16249454_{0}.jpg",
+            price = 120000,
+            priceFormatted = "120000 TL",
+            properties = listOf(
+                Property(name = "km", value = "55500"),
+                Property(name = "color", value = ""),
+                Property(name = "year", value = "2014")
+            ),
+            title = "Sahibinden Hyundai i20 1.2 MPI Jump 2014 Model "
+        ),
+        ListingResponseItem(
+            category = Category(
+                id = 21630,
+                name = "otomobil/hyundai-accent-1-3-ls"
+            ),
+            date = "2020-12-22T00:00:00",
+            dateFormatted = "22 Aralık 2020",
+            id = 16248481,
+            location = Location(cityName = "Adana", townName = "Yüreğir"),
+            modelName = "Accent 1.3 LS Servo Manuel",
+            photo = "https://arbstorage.mncdn.com/ilanfotograflari/2020/12/22/16248481/bf74824b-f7d3-4079-9b6a-eb9360ae288c_image_for_silan_16248481_{0}.jpg",
+            price = 40000,
+            priceFormatted = "40000 TL",
+            properties = listOf(
+                Property(name = "km", value = "173000"),
+                Property(name = "color", value = "Mavi"),
+                Property(name = "year", value = "1997")
+            ),
+            title = "Sahibinden Hyundai Accent 1.3 LS 1997 Model "
+        ),
+        ListingResponseItem(
+            category = Category(
+                id = 4265,
+                name = "otomobil/peugeot-206-1-4-comfort"
+            ),
+            date = "2020-12-22T00:00:00",
+            dateFormatted = "22 Aralık 2020",
+            id = 16248342,
+            location = Location(cityName = "Kayseri", townName = "Kocasinan"),
+            modelName = "206 1.4 Comfort Manuel",
+            photo = "https://arbstorage.mncdn.com/ilanfotograflari/2020/12/22/16248342/5b672e6d-9920-4338-bf7d-c1558ec66ae9_image_for_silan_16248342_{0}.jpg",
+            price = 68750,
+            priceFormatted = "68750 TL",
+            properties = listOf(
+                Property(name = "km", value = "127700"),
+                Property(name = "color", value = "Gri (Gümüş)"),
+                Property(name = "year", value = "2009")
+            ),
+            title = "Sahibinden Peugeot 206 1.4 Comfort 2009 Model "
+        ),
+        ListingResponseItem(
+            category = Category(
+                id = 17797,
+                name = "otomobil/fiat-egea-1-3-multijet-easy"
+            ),
+            date = "2020-12-22T00:00:00",
+            dateFormatted = "22 Aralık 2020",
+            id = 16247491,
+            location = Location(cityName = "Mersin", townName = "Yenişehir"),
+            modelName = "Egea 1.3 MultiJet Easy Manuel",
+            photo = "https://arbstorage.mncdn.com/ilanfotograflari/2020/12/22/16247491/6cda92c5-b65e-47e1-b7b5-8067714f5cd8_image_for_silan_16247491_{0}.jpg",
+            price = 149000,
+            priceFormatted = "149000 TL",
+            properties = listOf(
+                Property(name = "km", value = "25000"),
+                Property(name = "color", value = "Beyaz"),
+                Property(name = "year", value = "2019")
+            ),
+            title = "2019+MODEL+FİAT+EGEA+1.3 EASY+%18FATURALI+HATASIZ+BOYASIZ"
+        ),
+        ListingResponseItem(
+            category = Category(
+                id = 71803,
+                name = "arazi-suv-pick-up/dacia-duster-1-5-dci-prestige"
+            ),
+            date = "2020-12-22T00:00:00",
+            dateFormatted = "22 Aralık 2020",
+            id = 16246847,
+            location = Location(cityName = "Ankara", townName = "Altındağ"),
+            modelName = "Duster 1.5 DCI 4x4 Prestige Manuel",
+            photo = "https://arbstorage.mncdn.com/ilanfotograflari/2020/12/22/16246847/dd1a0938-364a-4791-911a-9f2c4d928406_image_for_silan_16246847_{0}.jpg",
+            price = 285000,
+            priceFormatted = "285000 TL",
+            properties = listOf(
+                Property(name = "km", value = "39000"),
+                Property(name = "color", value = ""),
+                Property(name = "year", value = "2018")
+            ),
+            title = "Sahibinden Dacia Duster 1.5 dCi Prestige 2018 Model Ankara"
+        ),
     )
 
     val mockDetailObject = DetailResponse(

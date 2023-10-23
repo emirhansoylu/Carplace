@@ -8,7 +8,7 @@ import dev.duckbuddyy.carplace.model.listing.ListingResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class RetrofitRepository:INetworkRepository {
+class RetrofitRepository : INetworkRepository {
     internal var apiService: ApiService = NetworkModule.apiService
 
     /**

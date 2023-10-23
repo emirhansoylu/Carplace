@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.duckbuddyy.carplace.log
 import dev.duckbuddyy.carplace.model.INetworkRepository
 import dev.duckbuddyy.carplace.model.detail.DetailResponse
-import dev.duckbuddyy.carplace.network_ktor.KtorRepository
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -50,6 +50,7 @@ class DetailViewModel @Inject constructor(
         ).onSuccess {
             _uiStateFlow.emit(DetailState.Success(it))
         }.onFailure {
+            it.log()
             _uiStateFlow.emit(DetailState.Error)
         }
     }
