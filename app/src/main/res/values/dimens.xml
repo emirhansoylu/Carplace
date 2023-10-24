@@ -9,4 +9,8 @@
     <dimen name="small_margin">4dp</dimen>
     <dimen name="medium_margin">8dp</dimen>
     <dimen name="high_margin">12dp</dimen>
+    <dimen name="extra_margin">28dp</dimen>
+
+    <dimen name="width_filter_text">128dp</dimen>
+
 </resources>
