@@ -24,6 +24,7 @@ import dev.duckbuddyy.carplace.model.enums.SortType
 import dev.duckbuddyy.carplace.model.enums.SortType.Year
 import dev.duckbuddyy.carplace.model.enums.SortType.Date
 import dev.duckbuddyy.carplace.model.enums.SortType.Price
+import dev.duckbuddyy.carplace.model.filter.ListingFilter
 import dev.duckbuddyy.carplace.setTextAndSelection
 
 @AndroidEntryPoint
@@ -34,19 +35,23 @@ class FilterBottomSheetFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentFilterBottomSheetBinding? = null
     private val binding get() = _binding!!
 
-    private val setFragmentResultCollector: suspend (Bundle) -> Unit = {
-        setFragmentResult(this@FilterBottomSheetFragment.javaClass.simpleName, it)
+    private val popBackStackCollector: suspend (ListingFilter) -> Unit = { filter ->
+        Bundle().apply {
+            putParcelable(ListingFilter::class.java.simpleName, filter)
+        }.also {
+            setFragmentResult(FilterBottomSheetFragment::class.java.simpleName, it)
+        }
         findNavController().popBackStack()
     }
 
     private val uiStateCollector: suspend (FilterBottomSheetState) -> Unit = { state ->
-        updateSortDirectionToggle(state.sortDirection)
-        updateSortTypeToggle(state.sortType)
+        updateSortDirectionToggle(state.filter.sortDirection)
+        updateSortTypeToggle(state.filter.sortType)
         binding.apply {
-            etFilterMaxDate.setTextAndSelection(state.maxDate)
-            etFilterMinDate.setTextAndSelection(state.minDate)
-            etFilterMaxYear.setTextAndSelection(state.maxYear?.toString())
-            etFilterMinYear.setTextAndSelection(state.minYear?.toString())
+            etFilterMaxDate.setTextAndSelection(state.filter.maxDate)
+            etFilterMinDate.setTextAndSelection(state.filter.minDate)
+            etFilterMaxYear.setTextAndSelection(state.filter.maxYear?.toString())
+            etFilterMinYear.setTextAndSelection(state.filter.minYear?.toString())
         }
     }
 
@@ -91,7 +96,7 @@ class FilterBottomSheetFragment : BottomSheetDialogFragment() {
 
         viewModel.apply {
             uiStateFlow.collectLatestWhenStarted(viewLifecycleOwner, uiStateCollector)
-            setFragmentResultFlow.collectLatestWhenStarted(viewLifecycleOwner, setFragmentResultCollector)
+            popBackStackFlow.collectLatestWhenStarted(viewLifecycleOwner, popBackStackCollector)
         }
 
         return binding.root

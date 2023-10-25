@@ -1,5 +1,6 @@
 package dev.duckbuddyy.carplace.listing
 
+import android.os.Build
 import android.os.Bundle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,8 +10,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.duckbuddyy.carplace.listing.filter.FilterBottomSheetState
 import dev.duckbuddyy.carplace.model.IRemoteDataSource
+import dev.duckbuddyy.carplace.model.filter.ListingFilter
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -27,7 +28,7 @@ class ListingViewModel @Inject constructor(
     var listingFlow: Flow<PagingData<ListingResponseItem>> = getCurrentListingFlow()
         private set
 
-    private var filterState: FilterBottomSheetState? = null
+    private var currentListingFilter: ListingFilter = ListingFilter()
 
     private val _navigationFlow = MutableSharedFlow<NavDirections>()
     val navigationFlow = _navigationFlow.asSharedFlow()
@@ -44,12 +45,12 @@ class ListingViewModel @Inject constructor(
     ) {
         ListingPaginationSource(
             repository = repository,
-            minDate = filterState?.minDate,
-            maxDate = filterState?.maxDate,
-            minYear = filterState?.minYear,
-            maxYear = filterState?.maxYear,
-            sort = filterState?.sortType,
-            sortDirection = filterState?.sortDirection
+            minDate = currentListingFilter.minDate,
+            maxDate = currentListingFilter.maxDate,
+            minYear = currentListingFilter.minYear,
+            maxYear = currentListingFilter.maxYear,
+            sort = currentListingFilter.sortType,
+            sortDirection = currentListingFilter.sortDirection
         )
     }.flow.flowOn(Dispatchers.IO).cachedIn(viewModelScope)
 
@@ -62,12 +63,19 @@ class ListingViewModel @Inject constructor(
     }
 
     fun onFilterClicked() = viewModelScope.launch {
-        val direction = ListingFragmentDirections.actionListingFragmentToFilterBottomSheetFragment()
+        val direction = ListingFragmentDirections.actionListingFragmentToFilterBottomSheetFragment(
+            currentFilter = currentListingFilter
+        )
         _navigationFlow.emit(direction)
     }
 
     fun onFilterChanged(filter: Bundle) {
-        filterState = FilterBottomSheetState.fromBundle(filter)
+        currentListingFilter = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            filter.getParcelable(ListingFilter::class.java.simpleName, ListingFilter::class.java)
+        } else {
+            filter.getParcelable(ListingFilter::class.java.simpleName) as? ListingFilter
+        } ?: ListingFilter()
+
         listingFlow = getCurrentListingFlow()
     }
 }

@@ -50,6 +50,11 @@
         android:id="@+id/filterBottomSheetFragment"
         android:name="dev.duckbuddyy.carplace.listing.filter.FilterBottomSheetFragment"
         android:label="fragment_filter_bottom_sheet"
-        tools:layout="@layout/fragment_filter_bottom_sheet" />
+        tools:layout="@layout/fragment_filter_bottom_sheet" >
+        <argument
+            android:name="currentFilter"
+            app:argType="dev.duckbuddyy.carplace.model.filter.ListingFilter"
+            app:nullable="true" />
+    </dialog>
 
 </navigation>

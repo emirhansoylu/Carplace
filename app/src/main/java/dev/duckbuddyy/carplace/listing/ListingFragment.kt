@@ -61,7 +61,6 @@ class ListingFragment : Fragment() {
 
     private fun onFilterChanged(bundle: Bundle) {
         viewModel.onFilterChanged(bundle)
-        listingAdapter.refresh()
     }
 
     override fun onCreateView(
