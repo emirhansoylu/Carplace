@@ -15,7 +15,7 @@ interface IRemoteDataSource {
         sort: SortType? = null,
         sortDirection: ListSortDirection? = null,
         skip: Int = 0,
-        take: Int = 10
+        take: Int = 20
     ): Result<ListingResponse>
 
     suspend fun getDetail(

@@ -38,7 +38,7 @@ class ListingViewModel @Inject constructor(
      */
     fun getCurrentListingFlow() = Pager(
         config = PagingConfig(
-            pageSize = 10,
+            pageSize = 20,
             enablePlaceholders = false,
         )
     ) {

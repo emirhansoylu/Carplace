@@ -35,6 +35,15 @@ class RetrofitDataSource : IRemoteDataSource {
         skip: Int,
         take: Int
     ): Result<ListingResponse> = withContext(Dispatchers.IO) {
+        println("Emirhan: Listing ->> categoryId " + categoryId?.toString())
+        println("Emirhan: Listing ->> minDate " + minDate?.toString())
+        println("Emirhan: Listing ->> maxDate " + maxDate?.toString())
+        println("Emirhan: Listing ->> minYear " + minYear?.toString())
+        println("Emirhan: Listing ->> maxYear " + maxYear?.toString())
+        println("Emirhan: Listing ->> sort " + sort?.toString())
+        println("Emirhan: Listing ->> sortDirection " + sortDirection?.toString())
+        println("Emirhan: Listing ->> skip " + skip?.toString())
+        println("Emirhan: Listing ->> take " + take?.toString())
         runCatching {
             apiService.getListing(
                 categoryId = categoryId?.toString(),

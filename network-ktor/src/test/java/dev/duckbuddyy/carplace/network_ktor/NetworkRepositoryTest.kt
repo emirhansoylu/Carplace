@@ -26,7 +26,7 @@ class NetworkRepositoryTest {
         val mockEngine = MockEngine { request ->
             respond(
                 content = when (request.url.toString()) {
-                    "$URL_LISTING?skip=0&take=10" -> ByteReadChannel(MockData.mockListingJson)
+                    "$URL_LISTING?skip=0&take=20" -> ByteReadChannel(MockData.mockListingJson)
                     "$URL_DETAIL?id=7333920" -> ByteReadChannel(MockData.mockDetailJson)
                     else -> ByteReadChannel(""" {} """)
                 },

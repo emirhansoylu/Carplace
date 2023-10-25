@@ -113,7 +113,7 @@
         android:hint="@string/text_min"
         android:maxLines="1"
         app:layout_constraintBottom_toBottomOf="@+id/tv_filter_minDate"
-        app:layout_constraintEnd_toStartOf="@+id/et_filter_min_year"
+        app:layout_constraintEnd_toStartOf="@+id/et_filter_max_date"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_filter_minDate"
         app:layout_constraintTop_toTopOf="@+id/tv_filter_minDate" />
@@ -129,7 +129,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_filter_minDate" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_filter_max_date"
+        android:id="@+id/et_filter_min_year"
         android:layout_width="@dimen/width_filter_text"
         android:layout_height="wrap_content"
         android:hint="@string/text_min"
@@ -143,7 +143,7 @@
         app:layout_constraintTop_toTopOf="@+id/tv_filter_maxDate" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_filter_min_year"
+        android:id="@+id/et_filter_max_date"
         android:layout_width="@dimen/width_filter_text"
         android:layout_height="wrap_content"
         android:hint="@string/text_max"
@@ -161,11 +161,11 @@
         android:hint="@string/text_max"
         android:inputType="numberDecimal"
         android:maxLines="1"
-        app:layout_constraintBottom_toBottomOf="@+id/et_filter_max_date"
+        app:layout_constraintBottom_toBottomOf="@+id/et_filter_min_year"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/et_filter_max_date"
-        app:layout_constraintTop_toTopOf="@+id/et_filter_max_date" />
+        app:layout_constraintStart_toEndOf="@+id/et_filter_min_year"
+        app:layout_constraintTop_toTopOf="@+id/et_filter_min_year" />
 
     <Button
         android:id="@+id/btn_filter_apply"

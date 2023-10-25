@@ -17,7 +17,7 @@ class ListingPaginationSource(
     private val maxYear: Int? = null,
     private val sort: SortType? = null,
     private val sortDirection: ListSortDirection? = null,
-    private val pageSize: Int = 10
+    private val pageSize: Int = 20
 ) : PagingSource<Int, ListingResponseItem>() {
 
     override val keyReuseSupported = true
