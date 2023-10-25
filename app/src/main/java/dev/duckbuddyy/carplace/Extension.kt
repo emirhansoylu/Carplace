@@ -14,6 +14,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+const val PAGINATION_SIZE = 20
+const val PREFETCH_DISTANCE = 5
+
 inline fun <T> Flow<T>.collectLatestWhenStarted(
     viewLifecycleOwner: LifecycleOwner,
     crossinline collector: suspend (T) -> Unit

@@ -10,13 +10,16 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.duckbuddyy.carplace.PAGINATION_SIZE
 import dev.duckbuddyy.carplace.model.IRemoteDataSource
 import dev.duckbuddyy.carplace.model.filter.ListingFilter
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,57 +28,54 @@ import javax.inject.Inject
 class ListingViewModel @Inject constructor(
     private val repository: IRemoteDataSource
 ) : ViewModel() {
-    var listingFlow: Flow<PagingData<ListingResponseItem>> = getCurrentListingFlow()
-        private set
+    private var _listingFilterFlow = MutableStateFlow(ListingFilter())
 
-    private var currentListingFilter: ListingFilter = ListingFilter()
+    var listingPagingData: Flow<PagingData<ListingResponseItem>> =
+        _listingFilterFlow.flatMapLatest {
+            Pager(
+                config = PagingConfig(
+                    pageSize = PAGINATION_SIZE,
+                    initialLoadSize = PAGINATION_SIZE,
+                    prefetchDistance = 5,
+                    enablePlaceholders = false,
+                )
+            ) {
+                ListingPaginationSource(
+                    repository = repository,
+                    minDate = it.minDate,
+                    maxDate = it.maxDate,
+                    minYear = it.minYear,
+                    maxYear = it.maxYear,
+                    sort = it.sortType,
+                    sortDirection = it.sortDirection
+                )
+            }.flow.flowOn(Dispatchers.IO).cachedIn(viewModelScope)
+        }
 
     private val _navigationFlow = MutableSharedFlow<NavDirections>()
     val navigationFlow = _navigationFlow.asSharedFlow()
-
-    /**
-     * Returns the current listing pagination source.
-     * [listingFlow] should be updated when filters updated.
-     */
-    fun getCurrentListingFlow() = Pager(
-        config = PagingConfig(
-            pageSize = 20,
-            enablePlaceholders = false,
-        )
-    ) {
-        ListingPaginationSource(
-            repository = repository,
-            minDate = currentListingFilter.minDate,
-            maxDate = currentListingFilter.maxDate,
-            minYear = currentListingFilter.minYear,
-            maxYear = currentListingFilter.maxYear,
-            sort = currentListingFilter.sortType,
-            sortDirection = currentListingFilter.sortDirection
-        )
-    }.flow.flowOn(Dispatchers.IO).cachedIn(viewModelScope)
 
     fun onItemClicked(item: ListingResponseItem) = viewModelScope.launch {
         val direction = ListingFragmentDirections.actionListingFragmentToDetailFragment(
             id = item.id
         )
-
         _navigationFlow.emit(direction)
     }
 
     fun onFilterClicked() = viewModelScope.launch {
         val direction = ListingFragmentDirections.actionListingFragmentToFilterBottomSheetFragment(
-            currentFilter = currentListingFilter
+            currentFilter = _listingFilterFlow.value
         )
         _navigationFlow.emit(direction)
     }
 
-    fun onFilterChanged(filter: Bundle) {
-        currentListingFilter = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+    fun onFilterChanged(filter: Bundle) = viewModelScope.launch {
+        val currentFilter = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             filter.getParcelable(ListingFilter::class.java.simpleName, ListingFilter::class.java)
         } else {
             filter.getParcelable(ListingFilter::class.java.simpleName) as? ListingFilter
         } ?: ListingFilter()
 
-        listingFlow = getCurrentListingFlow()
+        _listingFilterFlow.emit(currentFilter)
     }
 }

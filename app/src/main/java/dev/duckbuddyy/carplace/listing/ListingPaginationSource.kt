@@ -2,6 +2,7 @@ package dev.duckbuddyy.carplace.listing
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import dev.duckbuddyy.carplace.PAGINATION_SIZE
 import dev.duckbuddyy.carplace.log
 import dev.duckbuddyy.carplace.model.IRemoteDataSource
 import dev.duckbuddyy.carplace.model.enums.ListSortDirection
@@ -17,15 +18,14 @@ class ListingPaginationSource(
     private val maxYear: Int? = null,
     private val sort: SortType? = null,
     private val sortDirection: ListSortDirection? = null,
-    private val pageSize: Int = 20
 ) : PagingSource<Int, ListingResponseItem>() {
 
     override val keyReuseSupported = true
 
     override fun getRefreshKey(state: PagingState<Int, ListingResponseItem>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
-            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(pageSize)
-                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(pageSize)
+            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(PAGINATION_SIZE)
+                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(PAGINATION_SIZE)
         }
     }
 
@@ -55,7 +55,7 @@ class ListingPaginationSource(
             offset
         }
 
-        val nextKey = if (listingResponse.isEmpty()) {
+        val nextKey = if (listingResponse.count() < params.loadSize) {
             null
         } else {
             offset + params.loadSize

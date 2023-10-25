@@ -14,8 +14,8 @@ interface IRemoteDataSource {
         maxYear: Int? = null,
         sort: SortType? = null,
         sortDirection: ListSortDirection? = null,
-        skip: Int = 0,
-        take: Int = 20
+        skip: Int,
+        take: Int
     ): Result<ListingResponse>
 
     suspend fun getDetail(

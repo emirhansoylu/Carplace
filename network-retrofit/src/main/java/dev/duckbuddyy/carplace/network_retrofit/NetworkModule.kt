@@ -9,14 +9,12 @@ import retrofit2.Retrofit
 
 internal object NetworkModule {
     private val client by lazy {
-        OkHttpClient.Builder()
-            .retryOnConnectionFailure(true)
-            .addNetworkInterceptor(HttpLoggingInterceptor().apply {
-                level = if (BuildConfig.DEBUG)
-                    HttpLoggingInterceptor.Level.BODY
-                else
-                    HttpLoggingInterceptor.Level.NONE
-            }).build()
+        OkHttpClient.Builder().apply {
+            retryOnConnectionFailure(true)
+            if(BuildConfig.DEBUG) {
+                addNetworkInterceptor(LoggingInterceptor())
+            }
+        }.build()
     }
 
     private val retrofit by lazy {

@@ -48,7 +48,10 @@ class NetworkRepositoryTest {
 
     @Test
     fun getListingFromNetwork(): Unit = runBlocking {
-        ktorDataSource.getListing().onSuccess { networkListing: ListingResponse ->
+        ktorDataSource.getListing(
+            skip = 0,
+            take = 20
+        ).onSuccess { networkListing: ListingResponse ->
             assert(networkListing == MockData.mockListingObject) {
                 val differences = networkListing.subtract(MockData.mockListingObject)
                 "Network listing must be same as mock listing.\nThe lists has ${differences.size} differences.\nThey are: $differences"

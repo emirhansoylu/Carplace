@@ -17,7 +17,6 @@ import dev.duckbuddyy.carplace.collectLatestWhenStarted
 import dev.duckbuddyy.carplace.databinding.FragmentListingBinding
 import dev.duckbuddyy.carplace.listing.filter.FilterBottomSheetFragment
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
-import kotlinx.coroutines.Job
 
 @AndroidEntryPoint
 class ListingFragment : Fragment() {
@@ -51,7 +50,7 @@ class ListingFragment : Fragment() {
         }
     }
 
-    private val listingCollector: suspend (PagingData<ListingResponseItem>) -> Unit = {
+    private val listingPagingDataCollector: suspend (PagingData<ListingResponseItem>) -> Unit = {
         listingAdapter.submitData(it)
     }
 
@@ -79,7 +78,7 @@ class ListingFragment : Fragment() {
         }
 
         viewModel.apply {
-            listingFlow.collectLatestWhenStarted(viewLifecycleOwner, listingCollector)
+            listingPagingData.collectLatestWhenStarted(viewLifecycleOwner, listingPagingDataCollector)
             navigationFlow.collectLatestWhenStarted(viewLifecycleOwner, navigationCollector)
         }
 
