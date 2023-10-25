@@ -173,7 +173,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/high_margin"
         android:text="@string/text_apply_filters"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_filter_max_year" />

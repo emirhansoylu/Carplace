@@ -1,6 +1,7 @@
 package dev.duckbuddyy.carplace
 
 import android.util.Log
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -31,9 +32,24 @@ fun ImageView.load(imageUrl: String) {
         .placeholder(R.drawable.progress_animation)
         .error(R.drawable.ic_error)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
-//        .dontAnimate()
-//        .dontTransform()
         .into(this)
+}
+
+fun EditText.setTextAndSelection(text: String?) {
+    if(text == null){
+        setSelection(0)
+        setText(null)
+        return
+    }
+
+    val selectionPosition = if (text.length < selectionStart) {
+        text.length
+    } else {
+        selectionStart
+    }
+
+    setText(text)
+    setSelection(selectionPosition)
 }
 
 fun ViewPager.setOnPageChangedListener(onPageChanged: (Int) -> Unit) {

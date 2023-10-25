@@ -1,20 +1,30 @@
 package dev.duckbuddyy.carplace.listing.filter
 
+import android.app.Dialog
 import android.os.Bundle
+import com.google.android.material.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.duckbuddyy.carplace.collectLatestWhenStarted
 import dev.duckbuddyy.carplace.databinding.FragmentFilterBottomSheetBinding
 import dev.duckbuddyy.carplace.model.enums.ListSortDirection
+import dev.duckbuddyy.carplace.model.enums.ListSortDirection.Ascending
+import dev.duckbuddyy.carplace.model.enums.ListSortDirection.Descending
 import dev.duckbuddyy.carplace.model.enums.SortType
+import dev.duckbuddyy.carplace.model.enums.SortType.Year
+import dev.duckbuddyy.carplace.model.enums.SortType.Date
+import dev.duckbuddyy.carplace.model.enums.SortType.Price
+import dev.duckbuddyy.carplace.setTextAndSelection
 
 @AndroidEntryPoint
 class FilterBottomSheetFragment : BottomSheetDialogFragment() {
@@ -33,18 +43,18 @@ class FilterBottomSheetFragment : BottomSheetDialogFragment() {
         updateSortDirectionToggle(state.sortDirection)
         updateSortTypeToggle(state.sortType)
         binding.apply {
-            etFilterMaxDate.setText(state.maxDate)
-            etFilterMinDate.setText(state.minDate)
-            etFilterMaxYear.setText(state.maxYear?.toString())
-            etFilterMinYear.setText(state.minYear?.toString())
+            etFilterMaxDate.setTextAndSelection(state.maxDate)
+            etFilterMinDate.setTextAndSelection(state.minDate)
+            etFilterMaxYear.setTextAndSelection(state.maxYear?.toString())
+            etFilterMinYear.setTextAndSelection(state.minYear?.toString())
         }
     }
 
     private fun updateSortDirectionToggle(sortDirection: ListSortDirection?) = binding.apply {
         mbtgFilterSortDirection.clearChecked()
         when (sortDirection) {
-            ListSortDirection.Ascending -> mbtgFilterSortDirection.check(btnFilterAscending.id)
-            ListSortDirection.Descending -> mbtgFilterSortDirection.check(btnFilterDescending.id)
+            Ascending -> mbtgFilterSortDirection.check(btnFilterAscending.id)
+            Descending -> mbtgFilterSortDirection.check(btnFilterDescending.id)
             null -> Unit
         }
     }
@@ -52,9 +62,9 @@ class FilterBottomSheetFragment : BottomSheetDialogFragment() {
     private fun updateSortTypeToggle(sortType: SortType?) = binding.apply {
         mbtgFilterSortType.clearChecked()
         when (sortType) {
-            SortType.Date -> mbtgFilterSortType.check(btnFilterSortDate.id)
-            SortType.Price -> mbtgFilterSortType.check(btnFilterSortPrice.id)
-            SortType.Year -> mbtgFilterSortType.check(btnFilterSortYear.id)
+            Date -> mbtgFilterSortType.check(btnFilterSortDate.id)
+            Price -> mbtgFilterSortType.check(btnFilterSortPrice.id)
+            Year -> mbtgFilterSortType.check(btnFilterSortYear.id)
             null -> Unit
         }
     }
@@ -68,11 +78,11 @@ class FilterBottomSheetFragment : BottomSheetDialogFragment() {
 
         binding.apply {
             btnFilterApply.setOnClickListener { viewModel.applyFilters() }
-            btnFilterAscending.setOnClickListener { viewModel.onSortDirectionChanged(ListSortDirection.Ascending) }
-            btnFilterDescending.setOnClickListener { viewModel.onSortDirectionChanged(ListSortDirection.Descending) }
-            btnFilterSortPrice.setOnClickListener { viewModel.onSortTypeChanged(SortType.Price) }
-            btnFilterSortDate.setOnClickListener { viewModel.onSortTypeChanged(SortType.Date) }
-            btnFilterSortYear.setOnClickListener { viewModel.onSortTypeChanged(SortType.Year) }
+            btnFilterAscending.setOnClickListener { viewModel.onSortDirectionChanged(Ascending) }
+            btnFilterDescending.setOnClickListener { viewModel.onSortDirectionChanged(Descending) }
+            btnFilterSortPrice.setOnClickListener { viewModel.onSortTypeChanged(Price) }
+            btnFilterSortDate.setOnClickListener { viewModel.onSortTypeChanged(Date) }
+            btnFilterSortYear.setOnClickListener { viewModel.onSortTypeChanged(Year) }
             etFilterMaxDate.addTextChangedListener { viewModel.onMaxDateChanged(it) }
             etFilterMinDate.addTextChangedListener { viewModel.onMinDateChanged(it) }
             etFilterMaxYear.addTextChangedListener { viewModel.onMaxYearChanged(it) }
@@ -85,6 +95,17 @@ class FilterBottomSheetFragment : BottomSheetDialogFragment() {
         }
 
         return binding.root
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return super.onCreateDialog(savedInstanceState).apply {
+            setOnShowListener {
+                val bottomSheet = findViewById<FrameLayout>(R.id.design_bottom_sheet)
+                val layoutParams = bottomSheet.layoutParams as CoordinatorLayout.LayoutParams
+                BottomSheetBehavior.from(bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
+                bottomSheet.layoutParams = layoutParams
+            }
+        }
     }
 
     override fun onDestroyView() {
