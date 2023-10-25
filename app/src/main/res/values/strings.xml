@@ -5,21 +5,18 @@
 
     <string name="text_error">Something went wrong</string>
     <string name="text_retry">Retry</string>
-    <string name="transition_name">hero_image</string>
     <string name="text_call">Call</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_ascending">Ascending</string>
     <string name="text_descending">Descending</string>
     <string name="text_sort_direction">Sort direction</string>
     <string name="text_sort_type">Sort type</string>
     <string name="text_price">Price</string>
     <string name="text_year">Year</string>
+    <string name="text_model_year">Model year</string>
+    <string name="text_min">Minimum</string>
+    <string name="text_max">Maximum</string>
     <string name="text_date">Date</string>
-    <string name="text_min_date">Min date</string>
-    <string name="text_max_date">Max date</string>
-    <string name="text_min_year">Min year</string>
-    <string name="text_max_year">Max year</string>
+    <string name="text_advert_date">Advert date</string>
     <string name="text_apply_filters">Apply filters</string>
     <string name="text_filter">Filter</string>
 </resources>

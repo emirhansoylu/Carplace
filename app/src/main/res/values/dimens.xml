@@ -11,6 +11,6 @@
     <dimen name="high_margin">12dp</dimen>
     <dimen name="extra_margin">28dp</dimen>
 
-    <dimen name="width_filter_text">128dp</dimen>
+    <dimen name="width_filter_text">96dp</dimen>
 
 </resources>

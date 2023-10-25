@@ -35,8 +35,8 @@ class FilterBottomSheetFragment : BottomSheetDialogFragment() {
         binding.apply {
             etFilterMaxDate.setText(state.maxDate)
             etFilterMinDate.setText(state.minDate)
-            etFilterMaxYear.setText(state.maxYear.toString())
-            etFilterMinYear.setText(state.minYear.toString())
+            etFilterMaxYear.setText(state.maxYear?.toString())
+            etFilterMinYear.setText(state.minYear?.toString())
         }
     }
 

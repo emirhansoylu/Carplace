@@ -20,7 +20,6 @@
             android:layout_margin="@dimen/medium_margin"
             android:contentDescription="@string/cd_listing_image"
             android:scaleType="centerCrop"
-            android:transitionName="@string/transition_name"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
