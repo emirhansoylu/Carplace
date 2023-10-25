@@ -1,15 +1,19 @@
-package dev.duckbuddyy.carplace.network_retrofit
+package dev.duckbuddyy.carplace.network_ktor
 
-import dev.duckbuddyy.carplace.model.INetworkRepository
+import dev.duckbuddyy.carplace.model.IRemoteDataSource
 import dev.duckbuddyy.carplace.model.detail.DetailResponse
 import dev.duckbuddyy.carplace.model.enums.ListSortDirection
 import dev.duckbuddyy.carplace.model.enums.SortType
 import dev.duckbuddyy.carplace.model.listing.ListingResponse
+import io.ktor.client.HttpClient
+import io.ktor.client.call.body
+import io.ktor.client.request.get
+import io.ktor.http.HttpMethod
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class RetrofitRepository : INetworkRepository {
-    internal var apiService: ApiService = NetworkModule.apiService
+class KtorDataSource : IRemoteDataSource {
+    internal var client: HttpClient = NetworkModule.httpClient
 
     /**
      * Gets the car list from network.
@@ -36,17 +40,20 @@ class RetrofitRepository : INetworkRepository {
         take: Int
     ): Result<ListingResponse> = withContext(Dispatchers.IO) {
         runCatching {
-            apiService.getListing(
-                categoryId = categoryId?.toString(),
-                minDate = minDate,
-                maxDate = maxDate,
-                minYear = minYear?.toString(),
-                maxYear = maxYear?.toString(),
-                sort = sort?.sortType,
-                sortDirection = sortDirection?.direction,
-                skip = skip.toString(),
-                take = take.toString()
-            )
+            client.get(URL_LISTING) {
+                method = HttpMethod.Get
+                url {
+                    categoryId?.let { parameters.append("categoryId", it.toString()) }
+                    minDate?.let { parameters.append("minDate", it) }
+                    maxDate?.let { parameters.append("maxDate", it) }
+                    minYear?.let { parameters.append("minYear", it.toString()) }
+                    maxYear?.let { parameters.append("maxYear", it.toString()) }
+                    sort?.let { parameters.append("sort", it.sortType) }
+                    sortDirection?.let { parameters.append("sortDirection", it.direction) }
+                    parameters.append("skip", skip.toString())
+                    parameters.append("take", take.toString())
+                }
+            }.body()
         }
     }
 
@@ -59,9 +66,12 @@ class RetrofitRepository : INetworkRepository {
         id: Int
     ): Result<DetailResponse> = withContext(Dispatchers.IO) {
         runCatching {
-            apiService.getDetail(
-                id = id.toString()
-            )
+            client.get(URL_DETAIL) {
+                method = HttpMethod.Get
+                url {
+                    parameters.append("id", id.toString())
+                }
+            }.body()
         }
     }
 

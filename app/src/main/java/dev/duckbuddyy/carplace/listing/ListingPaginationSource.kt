@@ -3,13 +3,13 @@ package dev.duckbuddyy.carplace.listing
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import dev.duckbuddyy.carplace.log
-import dev.duckbuddyy.carplace.model.INetworkRepository
+import dev.duckbuddyy.carplace.model.IRemoteDataSource
 import dev.duckbuddyy.carplace.model.enums.ListSortDirection
 import dev.duckbuddyy.carplace.model.enums.SortType
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
 
 class ListingPaginationSource(
-    private val repository: INetworkRepository,
+    private val repository: IRemoteDataSource,
     private val categoryId: Int? = null,
     private val minDate: String? = null,
     private val maxDate: String? = null,
@@ -19,6 +19,8 @@ class ListingPaginationSource(
     private val sortDirection: ListSortDirection? = null,
     private val pageSize: Int = 10
 ) : PagingSource<Int, ListingResponseItem>() {
+
+    override val keyReuseSupported = true
 
     override fun getRefreshKey(state: PagingState<Int, ListingResponseItem>): Int? {
         return state.anchorPosition?.let { anchorPosition ->

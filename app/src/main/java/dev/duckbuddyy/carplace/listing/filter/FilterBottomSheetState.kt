@@ -30,13 +30,28 @@ data class FilterBottomSheetState(
         private const val KEY_SORT_TYPE = "KEY_SORT_TYPE"
         private const val KEY_SORT_DIRECTION = "KEY_SORT_DIRECTION"
 
-        fun fromBundle(bundle: Bundle) = FilterBottomSheetState(
-            minDate = bundle.getString(KEY_MIN_DATE),
-            maxDate = bundle.getString(KEY_MAX_DATE),
-            minYear = bundle.getInt(KEY_MIN_YEAR),
-            maxYear = bundle.getInt(KEY_MAX_YEAR),
-            sortType = bundle.getString(KEY_SORT_TYPE)?.let { SortType.fromDirectionId(it) },
-            sortDirection = bundle.getString(KEY_SORT_DIRECTION)?.let { ListSortDirection.fromDirectionId(it) },
-        )
+        fun fromBundle(bundle: Bundle): FilterBottomSheetState {
+            val _minYear = if (bundle.getInt(KEY_MIN_YEAR) == 0) {
+                null
+            } else {
+                bundle.getInt(KEY_MIN_YEAR)
+            }
+
+            val _maxYear = if (bundle.getInt(KEY_MAX_YEAR) == 0) {
+                null
+            } else {
+                bundle.getInt(KEY_MAX_YEAR)
+            }
+
+            return FilterBottomSheetState(
+                minDate = bundle.getString(KEY_MIN_DATE),
+                maxDate = bundle.getString(KEY_MAX_DATE),
+                minYear = _minYear,
+                maxYear = _maxYear,
+                sortType = bundle.getString(KEY_SORT_TYPE)?.let { SortType.fromDirectionId(it) },
+                sortDirection = bundle.getString(KEY_SORT_DIRECTION)
+                    ?.let { ListSortDirection.fromDirectionId(it) },
+            )
+        }
     }
 }

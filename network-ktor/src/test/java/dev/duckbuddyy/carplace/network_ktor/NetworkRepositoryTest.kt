@@ -2,8 +2,8 @@ package dev.duckbuddyy.carplace.network_ktor
 
 import dev.duckbuddyy.carplace.model.detail.DetailResponse
 import dev.duckbuddyy.carplace.model.listing.ListingResponse
-import dev.duckbuddyy.carplace.network_ktor.KtorRepository.URL.URL_DETAIL
-import dev.duckbuddyy.carplace.network_ktor.KtorRepository.URL.URL_LISTING
+import dev.duckbuddyy.carplace.network_ktor.KtorDataSource.URL.URL_DETAIL
+import dev.duckbuddyy.carplace.network_ktor.KtorDataSource.URL.URL_LISTING
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
@@ -19,7 +19,7 @@ import org.junit.Before
 import org.junit.Test
 
 class NetworkRepositoryTest {
-    private lateinit var ktorRepository: KtorRepository
+    private lateinit var ktorDataSource: KtorDataSource
 
     @Before
     fun setup() {
@@ -34,8 +34,8 @@ class NetworkRepositoryTest {
                 headers = headersOf(HttpHeaders.ContentType, "application/json")
             )
         }
-        ktorRepository = KtorRepository()
-        ktorRepository.client = HttpClient(mockEngine) {
+        ktorDataSource = KtorDataSource()
+        ktorDataSource.client = HttpClient(mockEngine) {
             install(ContentNegotiation) {
                 json(Json {
                     prettyPrint = true
@@ -48,7 +48,7 @@ class NetworkRepositoryTest {
 
     @Test
     fun getListingFromNetwork(): Unit = runBlocking {
-        ktorRepository.getListing().onSuccess { networkListing: ListingResponse ->
+        ktorDataSource.getListing().onSuccess { networkListing: ListingResponse ->
             assert(networkListing == MockData.mockListingObject) {
                 val differences = networkListing.subtract(MockData.mockListingObject)
                 "Network listing must be same as mock listing.\nThe lists has ${differences.size} differences.\nThey are: $differences"
@@ -62,7 +62,7 @@ class NetworkRepositoryTest {
 
     @Test
     fun getDetailFromNetwork(): Unit = runBlocking {
-        ktorRepository.getDetail(
+        ktorDataSource.getDetail(
             id = 7333920
         ).onSuccess { networkDetail: DetailResponse ->
             assert(networkDetail == MockData.mockDetailObject) {

@@ -5,9 +5,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.duckbuddyy.carplace.BuildConfig
-import dev.duckbuddyy.carplace.model.INetworkRepository
-import dev.duckbuddyy.carplace.network_ktor.KtorRepository
-import dev.duckbuddyy.carplace.network_retrofit.RetrofitRepository
+import dev.duckbuddyy.carplace.model.IRemoteDataSource
+import dev.duckbuddyy.carplace.network_ktor.KtorDataSource
+import dev.duckbuddyy.carplace.network_retrofit.RetrofitDataSource
 import javax.inject.Singleton
 
 @Module
@@ -16,11 +16,11 @@ object SingletonModule {
 
     @Singleton
     @Provides
-    fun provideNetworkRepository(): INetworkRepository {
+    fun provideNetworkRepository(): IRemoteDataSource {
         return if (BuildConfig.HTTP_CLIENT == "RETROFIT") {
-            RetrofitRepository()
+            RetrofitDataSource()
         } else {
-            KtorRepository()
+            KtorDataSource()
         }
     }
 }

@@ -30,12 +30,9 @@ class PhotoFragment : Fragment() {
                     imageUrls = images,
                 ).also { vpPhoto.adapter = it }
 
-                tvPhoto.text = "${state.imagePosition + 1} / ${images.size}"
-
+                tvPhoto.text = state.currentIndex
                 vpPhoto.currentItem = state.imagePosition
-                vpPhoto.setOnPageChangedListener { position ->
-                    tvPhoto.text = "${position + 1} / ${images.size}"
-                }
+                vpPhoto.setOnPageChangedListener { viewModel.onPageChanged(it) }
             }
         }
     }
@@ -54,12 +51,14 @@ class PhotoFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        setFragmentResult(KEY_RESULT, bundleOf(KEY_POSITION to binding.vpPhoto.currentItem))
+        setFragmentResult(
+            this.javaClass.simpleName,
+            bundleOf(KEY_POSITION to binding.vpPhoto.currentItem)
+        )
         _binding = null
     }
 
     companion object {
-        const val KEY_RESULT = "key_result"
         const val KEY_POSITION = "key_image_position"
     }
 }

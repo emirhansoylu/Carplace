@@ -2,8 +2,8 @@ package dev.duckbuddyy.carplace.network_retrofit
 
 import dev.duckbuddyy.carplace.model.detail.DetailResponse
 import dev.duckbuddyy.carplace.model.listing.ListingResponse
-import dev.duckbuddyy.carplace.network_retrofit.RetrofitRepository.URL.URL_DETAIL
-import dev.duckbuddyy.carplace.network_retrofit.RetrofitRepository.URL.URL_LISTING
+import dev.duckbuddyy.carplace.network_retrofit.RetrofitDataSource.URL.URL_DETAIL
+import dev.duckbuddyy.carplace.network_retrofit.RetrofitDataSource.URL.URL_LISTING
 import retrofit2.http.GET
 import retrofit2.http.Query
 

@@ -32,4 +32,10 @@ class PhotoViewModel @Inject constructor(
             _uiStateFlow.emit(PhotoState.Error)
         }
     }
+
+    fun onPageChanged(position: Int) = viewModelScope.launch {
+        (uiStateFlow.value as? PhotoState.Success)?.let {
+            _uiStateFlow.emit(it.copy(imagePosition = position))
+        }
+    }
 }

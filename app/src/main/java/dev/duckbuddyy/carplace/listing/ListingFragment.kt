@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
@@ -14,7 +15,9 @@ import androidx.paging.PagingData
 import dagger.hilt.android.AndroidEntryPoint
 import dev.duckbuddyy.carplace.collectLatestWhenStarted
 import dev.duckbuddyy.carplace.databinding.FragmentListingBinding
+import dev.duckbuddyy.carplace.listing.filter.FilterBottomSheetFragment
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
+import kotlinx.coroutines.Job
 
 @AndroidEntryPoint
 class ListingFragment : Fragment() {
@@ -43,6 +46,7 @@ class ListingFragment : Fragment() {
                 binding.srlListing.isRefreshing = isLoading
                 binding.layoutListingError.root.isVisible = hasError
                 binding.rvListing.isVisible = !hasError
+                binding.fabFilter.isVisible = !hasError
             }
         }
     }
@@ -55,6 +59,11 @@ class ListingFragment : Fragment() {
         findNavController().navigate(it)
     }
 
+    private fun onFilterChanged(bundle: Bundle) {
+        viewModel.onFilterChanged(bundle)
+        listingAdapter.refresh()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,6 +74,7 @@ class ListingFragment : Fragment() {
         binding.apply {
             rvListing.adapter = listingAdapter
             layoutListingError.retryButton.setOnClickListener { listingAdapter.refresh() }
+            fabFilter.setOnClickListener { viewModel.onFilterClicked() }
             srlListing.setOnRefreshListener { listingAdapter.refresh() }
             srlListing.isRefreshing = true
         }
@@ -72,6 +82,10 @@ class ListingFragment : Fragment() {
         viewModel.apply {
             listingFlow.collectLatestWhenStarted(viewLifecycleOwner, listingCollector)
             navigationFlow.collectLatestWhenStarted(viewLifecycleOwner, navigationCollector)
+        }
+
+        setFragmentResultListener(FilterBottomSheetFragment::class.java.simpleName) { _, bundle ->
+            onFilterChanged(bundle)
         }
 
         return binding.root

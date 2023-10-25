@@ -5,7 +5,7 @@ import dev.duckbuddyy.carplace.model.enums.ListSortDirection
 import dev.duckbuddyy.carplace.model.enums.SortType
 import dev.duckbuddyy.carplace.model.listing.ListingResponse
 
-interface INetworkRepository {
+interface IRemoteDataSource {
     suspend fun getListing(
         categoryId: Int? = null,
         minDate: String? = null,

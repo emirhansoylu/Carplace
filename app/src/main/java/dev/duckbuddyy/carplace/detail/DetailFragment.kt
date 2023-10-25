@@ -14,8 +14,8 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.duckbuddyy.carplace.collectLatestWhenStarted
 import dev.duckbuddyy.carplace.databinding.FragmentDetailBinding
+import dev.duckbuddyy.carplace.photo.PhotoFragment
 import dev.duckbuddyy.carplace.photo.PhotoFragment.Companion.KEY_POSITION
-import dev.duckbuddyy.carplace.photo.PhotoFragment.Companion.KEY_RESULT
 
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
@@ -75,7 +75,7 @@ class DetailFragment : Fragment() {
             navigationFlow.collectLatestWhenStarted(viewLifecycleOwner, navigationCollector)
         }
 
-        setFragmentResultListener(KEY_RESULT) { key, bundle ->
+        setFragmentResultListener(PhotoFragment::class.java.simpleName) { _, bundle ->
             val viewPagerPosition = bundle.getInt(KEY_POSITION, -1)
             if (viewPagerPosition != -1) {
                 binding.vpDetail.currentItem = viewPagerPosition

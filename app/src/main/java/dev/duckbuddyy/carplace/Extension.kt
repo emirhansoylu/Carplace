@@ -28,7 +28,11 @@ fun ImageView.load(imageUrl: String) {
     Glide
         .with(context)
         .load(imageUrl)
+        .placeholder(R.drawable.progress_animation)
+        .error(R.drawable.ic_error)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
+//        .dontAnimate()
+//        .dontTransform()
         .into(this)
 }
 

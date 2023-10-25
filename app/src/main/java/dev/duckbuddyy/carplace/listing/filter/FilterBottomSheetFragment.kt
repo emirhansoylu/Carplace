@@ -8,6 +8,8 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.duckbuddyy.carplace.collectLatestWhenStarted
 import dev.duckbuddyy.carplace.databinding.FragmentFilterBottomSheetBinding
@@ -15,7 +17,7 @@ import dev.duckbuddyy.carplace.model.enums.ListSortDirection
 import dev.duckbuddyy.carplace.model.enums.SortType
 
 @AndroidEntryPoint
-class FilterBottomSheetFragment : Fragment() {
+class FilterBottomSheetFragment : BottomSheetDialogFragment() {
 
     private val viewModel: FilterBottomSheetViewModel by viewModels()
 
@@ -24,6 +26,7 @@ class FilterBottomSheetFragment : Fragment() {
 
     private val setFragmentResultCollector: suspend (Bundle) -> Unit = {
         setFragmentResult(this@FilterBottomSheetFragment.javaClass.simpleName, it)
+        findNavController().popBackStack()
     }
 
     private val uiStateCollector: suspend (FilterBottomSheetState) -> Unit = { state ->
