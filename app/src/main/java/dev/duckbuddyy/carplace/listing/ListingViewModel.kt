@@ -7,17 +7,14 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.duckbuddyy.carplace.util.PAGINATION_SIZE
-import dev.duckbuddyy.carplace.model.IRemoteDataSource
 import dev.duckbuddyy.carplace.model.filter.ListingFilter
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
 import dev.duckbuddyy.carplace.util.CarplaceRepository
+import dev.duckbuddyy.carplace.util.PAGINATION_SIZE
 import dev.duckbuddyy.carplace.util.PREFETCH_DISTANCE
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -32,22 +29,21 @@ class ListingViewModel @Inject constructor(
 ) : ViewModel() {
     private var _listingFilterFlow = MutableStateFlow(ListingFilter())
 
-    var listingPagingData: Flow<PagingData<ListingResponseItem>> =
-        _listingFilterFlow.flatMapLatest {
-            Pager(
-                config = PagingConfig(
-                    pageSize = PAGINATION_SIZE,
-                    initialLoadSize = PAGINATION_SIZE,
-                    prefetchDistance = PREFETCH_DISTANCE,
-                    enablePlaceholders = false,
-                )
-            ) {
-                ListingPaginationSource(
-                    repository = repository,
-                    listingFilter = it
-                )
-            }.flow.flowOn(Dispatchers.IO).cachedIn(viewModelScope)
-        }
+    var listingPagingDataFlow = _listingFilterFlow.flatMapLatest {
+        Pager(
+            config = PagingConfig(
+                pageSize = PAGINATION_SIZE,
+                initialLoadSize = PAGINATION_SIZE,
+                prefetchDistance = PREFETCH_DISTANCE,
+                enablePlaceholders = false,
+            )
+        ) {
+            ListingPaginationSource(
+                repository = repository,
+                listingFilter = it
+            )
+        }.flow.flowOn(Dispatchers.IO).cachedIn(viewModelScope)
+    }
 
     private val _navigationFlow = MutableSharedFlow<NavDirections>()
     val navigationFlow = _navigationFlow.asSharedFlow()

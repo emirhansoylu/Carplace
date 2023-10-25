@@ -7,10 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.duckbuddyy.carplace.util.log
-import dev.duckbuddyy.carplace.model.IRemoteDataSource
 import dev.duckbuddyy.carplace.model.detail.DetailResponse
 import dev.duckbuddyy.carplace.util.CarplaceRepository
+import dev.duckbuddyy.carplace.util.log
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow

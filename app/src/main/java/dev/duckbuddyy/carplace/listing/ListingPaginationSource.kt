@@ -2,12 +2,11 @@ package dev.duckbuddyy.carplace.listing
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import dev.duckbuddyy.carplace.util.PAGINATION_SIZE
-import dev.duckbuddyy.carplace.util.log
-import dev.duckbuddyy.carplace.model.IRemoteDataSource
 import dev.duckbuddyy.carplace.model.filter.ListingFilter
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
 import dev.duckbuddyy.carplace.util.CarplaceRepository
+import dev.duckbuddyy.carplace.util.PAGINATION_SIZE
+import dev.duckbuddyy.carplace.util.log
 
 class ListingPaginationSource(
     private val repository: CarplaceRepository,

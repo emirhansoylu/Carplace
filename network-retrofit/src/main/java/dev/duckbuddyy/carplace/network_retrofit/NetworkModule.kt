@@ -10,7 +10,7 @@ internal object NetworkModule {
     private val client by lazy {
         OkHttpClient.Builder().apply {
             retryOnConnectionFailure(true)
-            if(BuildConfig.DEBUG) {
+            if (BuildConfig.DEBUG) {
                 addNetworkInterceptor(LoggingInterceptor())
             }
         }.build()

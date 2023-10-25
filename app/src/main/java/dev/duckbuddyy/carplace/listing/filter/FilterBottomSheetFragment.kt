@@ -2,7 +2,6 @@ package dev.duckbuddyy.carplace.listing.filter
 
 import android.app.Dialog
 import android.os.Bundle
-import com.google.android.material.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,19 +11,20 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
-import dev.duckbuddyy.carplace.util.collectLatestWhenStarted
 import dev.duckbuddyy.carplace.databinding.FragmentFilterBottomSheetBinding
 import dev.duckbuddyy.carplace.model.enums.ListSortDirection
 import dev.duckbuddyy.carplace.model.enums.ListSortDirection.Ascending
 import dev.duckbuddyy.carplace.model.enums.ListSortDirection.Descending
 import dev.duckbuddyy.carplace.model.enums.SortType
-import dev.duckbuddyy.carplace.model.enums.SortType.Year
 import dev.duckbuddyy.carplace.model.enums.SortType.Date
 import dev.duckbuddyy.carplace.model.enums.SortType.Price
+import dev.duckbuddyy.carplace.model.enums.SortType.Year
 import dev.duckbuddyy.carplace.model.filter.ListingFilter
+import dev.duckbuddyy.carplace.util.collectLatestWhenStarted
 import dev.duckbuddyy.carplace.util.setTextAndSelection
 
 @AndroidEntryPoint

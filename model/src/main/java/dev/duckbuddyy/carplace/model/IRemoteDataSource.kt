@@ -1,8 +1,6 @@
 package dev.duckbuddyy.carplace.model
 
 import dev.duckbuddyy.carplace.model.detail.DetailResponse
-import dev.duckbuddyy.carplace.model.enums.ListSortDirection
-import dev.duckbuddyy.carplace.model.enums.SortType
 import dev.duckbuddyy.carplace.model.listing.ListingResponse
 
 interface IRemoteDataSource {

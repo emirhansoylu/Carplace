@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
-import dev.duckbuddyy.carplace.util.collectLatestWhenStarted
 import dev.duckbuddyy.carplace.databinding.FragmentPhotoBinding
+import dev.duckbuddyy.carplace.util.collectLatestWhenStarted
 import dev.duckbuddyy.carplace.util.setOnPageChangedListener
 
 @AndroidEntryPoint

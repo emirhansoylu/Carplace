@@ -2,8 +2,6 @@ package dev.duckbuddyy.carplace.network_ktor
 
 import dev.duckbuddyy.carplace.model.IRemoteDataSource
 import dev.duckbuddyy.carplace.model.detail.DetailResponse
-import dev.duckbuddyy.carplace.model.enums.ListSortDirection
-import dev.duckbuddyy.carplace.model.enums.SortType
 import dev.duckbuddyy.carplace.model.listing.ListingResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body

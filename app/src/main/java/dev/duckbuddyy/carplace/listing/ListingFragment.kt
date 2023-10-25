@@ -50,7 +50,7 @@ class ListingFragment : Fragment() {
         }
     }
 
-    private val listingPagingDataCollector: suspend (PagingData<ListingResponseItem>) -> Unit = {
+    private val pagingCollector: suspend (PagingData<ListingResponseItem>) -> Unit = {
         listingAdapter.submitData(it)
     }
 
@@ -78,10 +78,7 @@ class ListingFragment : Fragment() {
         }
 
         viewModel.apply {
-            listingPagingData.collectLatestWhenStarted(
-                viewLifecycleOwner,
-                listingPagingDataCollector
-            )
+            listingPagingDataFlow.collectLatestWhenStarted(viewLifecycleOwner, pagingCollector)
             navigationFlow.collectLatestWhenStarted(viewLifecycleOwner, navigationCollector)
         }
 

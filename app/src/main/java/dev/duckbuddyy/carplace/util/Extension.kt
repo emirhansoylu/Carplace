@@ -41,7 +41,7 @@ fun ImageView.load(imageUrl: String) {
 }
 
 fun EditText.setTextAndSelection(text: String?) {
-    if(text == null){
+    if (text == null) {
         setSelection(0)
         setText(null)
         return
