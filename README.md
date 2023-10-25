@@ -1,4 +1,4 @@
-## Shopr
+## Carplace
 Simple Android application shat shows a car list from API.
 
 The project developed with multi-moduled architecure. This provides separation of concerns, and all of modules has own responsibilities.
