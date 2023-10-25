@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
-import dev.duckbuddyy.carplace.collectLatestWhenStarted
+import dev.duckbuddyy.carplace.util.collectLatestWhenStarted
 import dev.duckbuddyy.carplace.databinding.FragmentFilterBottomSheetBinding
 import dev.duckbuddyy.carplace.model.enums.ListSortDirection
 import dev.duckbuddyy.carplace.model.enums.ListSortDirection.Ascending
@@ -25,7 +25,7 @@ import dev.duckbuddyy.carplace.model.enums.SortType.Year
 import dev.duckbuddyy.carplace.model.enums.SortType.Date
 import dev.duckbuddyy.carplace.model.enums.SortType.Price
 import dev.duckbuddyy.carplace.model.filter.ListingFilter
-import dev.duckbuddyy.carplace.setTextAndSelection
+import dev.duckbuddyy.carplace.util.setTextAndSelection
 
 @AndroidEntryPoint
 class FilterBottomSheetFragment : BottomSheetDialogFragment() {

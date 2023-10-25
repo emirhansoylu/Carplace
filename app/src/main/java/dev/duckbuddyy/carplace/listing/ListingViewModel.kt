@@ -10,10 +10,12 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.duckbuddyy.carplace.PAGINATION_SIZE
+import dev.duckbuddyy.carplace.util.PAGINATION_SIZE
 import dev.duckbuddyy.carplace.model.IRemoteDataSource
 import dev.duckbuddyy.carplace.model.filter.ListingFilter
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
+import dev.duckbuddyy.carplace.util.CarplaceRepository
+import dev.duckbuddyy.carplace.util.PREFETCH_DISTANCE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -26,7 +28,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListingViewModel @Inject constructor(
-    private val repository: IRemoteDataSource
+    private val repository: CarplaceRepository
 ) : ViewModel() {
     private var _listingFilterFlow = MutableStateFlow(ListingFilter())
 
@@ -36,18 +38,13 @@ class ListingViewModel @Inject constructor(
                 config = PagingConfig(
                     pageSize = PAGINATION_SIZE,
                     initialLoadSize = PAGINATION_SIZE,
-                    prefetchDistance = 5,
+                    prefetchDistance = PREFETCH_DISTANCE,
                     enablePlaceholders = false,
                 )
             ) {
                 ListingPaginationSource(
                     repository = repository,
-                    minDate = it.minDate,
-                    maxDate = it.maxDate,
-                    minYear = it.minYear,
-                    maxYear = it.maxYear,
-                    sort = it.sortType,
-                    sortDirection = it.sortDirection
+                    listingFilter = it
                 )
             }.flow.flowOn(Dispatchers.IO).cachedIn(viewModelScope)
         }

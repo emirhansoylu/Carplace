@@ -9,10 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
-import dev.duckbuddyy.carplace.collectLatestWhenStarted
+import dev.duckbuddyy.carplace.util.collectLatestWhenStarted
 import dev.duckbuddyy.carplace.databinding.FragmentPhotoBinding
-import dev.duckbuddyy.carplace.model.enums.PhotoSize
-import dev.duckbuddyy.carplace.setOnPageChangedListener
+import dev.duckbuddyy.carplace.util.setOnPageChangedListener
 
 @AndroidEntryPoint
 class PhotoFragment : Fragment() {
@@ -24,10 +23,8 @@ class PhotoFragment : Fragment() {
     private val uiStateCollector: suspend (PhotoState) -> Unit = { state ->
         binding.apply {
             if (state is PhotoState.Success) {
-                val images = state.images.map { it.replace("{0}", PhotoSize.XLarge.resolution) }
-
                 PhotoAdapter(
-                    imageUrls = images,
+                    imageUrls = state.actualImages,
                 ).also { vpPhoto.adapter = it }
 
                 tvPhoto.text = state.currentIndex

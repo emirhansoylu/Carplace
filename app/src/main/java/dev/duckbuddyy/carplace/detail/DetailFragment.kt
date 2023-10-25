@@ -12,7 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import dev.duckbuddyy.carplace.collectLatestWhenStarted
+import dev.duckbuddyy.carplace.util.collectLatestWhenStarted
 import dev.duckbuddyy.carplace.databinding.FragmentDetailBinding
 import dev.duckbuddyy.carplace.photo.PhotoFragment
 import dev.duckbuddyy.carplace.photo.PhotoFragment.Companion.KEY_POSITION

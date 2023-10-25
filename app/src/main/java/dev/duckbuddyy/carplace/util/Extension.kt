@@ -1,4 +1,4 @@
-package dev.duckbuddyy.carplace
+package dev.duckbuddyy.carplace.util
 
 import android.util.Log
 import android.widget.EditText
@@ -10,6 +10,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import dev.duckbuddyy.carplace.BuildConfig
+import dev.duckbuddyy.carplace.R
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

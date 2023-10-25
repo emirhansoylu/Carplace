@@ -7,9 +7,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.duckbuddyy.carplace.log
+import dev.duckbuddyy.carplace.util.log
 import dev.duckbuddyy.carplace.model.IRemoteDataSource
 import dev.duckbuddyy.carplace.model.detail.DetailResponse
+import dev.duckbuddyy.carplace.util.CarplaceRepository
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -19,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val repository: IRemoteDataSource,
+    private val repository: CarplaceRepository,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
     private val arguments = DetailFragmentArgs.fromSavedStateHandle(savedStateHandle)

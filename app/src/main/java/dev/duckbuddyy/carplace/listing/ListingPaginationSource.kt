@@ -2,22 +2,16 @@ package dev.duckbuddyy.carplace.listing
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import dev.duckbuddyy.carplace.PAGINATION_SIZE
-import dev.duckbuddyy.carplace.log
+import dev.duckbuddyy.carplace.util.PAGINATION_SIZE
+import dev.duckbuddyy.carplace.util.log
 import dev.duckbuddyy.carplace.model.IRemoteDataSource
-import dev.duckbuddyy.carplace.model.enums.ListSortDirection
-import dev.duckbuddyy.carplace.model.enums.SortType
+import dev.duckbuddyy.carplace.model.filter.ListingFilter
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
+import dev.duckbuddyy.carplace.util.CarplaceRepository
 
 class ListingPaginationSource(
-    private val repository: IRemoteDataSource,
-    private val categoryId: Int? = null,
-    private val minDate: String? = null,
-    private val maxDate: String? = null,
-    private val minYear: Int? = null,
-    private val maxYear: Int? = null,
-    private val sort: SortType? = null,
-    private val sortDirection: ListSortDirection? = null,
+    private val repository: CarplaceRepository,
+    private val listingFilter: ListingFilter
 ) : PagingSource<Int, ListingResponseItem>() {
 
     override val keyReuseSupported = true
@@ -35,13 +29,7 @@ class ListingPaginationSource(
         val offset = params.key ?: 0
 
         val listingResponse = repository.getListing(
-            categoryId = categoryId,
-            minDate = minDate,
-            maxDate = maxDate,
-            minYear = minYear,
-            maxYear = maxYear,
-            sort = sort,
-            sortDirection = sortDirection,
+            filter = listingFilter,
             take = params.loadSize,
             skip = offset
         ).getOrElse {

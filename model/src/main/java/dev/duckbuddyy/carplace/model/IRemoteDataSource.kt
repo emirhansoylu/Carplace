@@ -12,8 +12,8 @@ interface IRemoteDataSource {
         maxDate: String? = null,
         minYear: Int? = null,
         maxYear: Int? = null,
-        sort: SortType? = null,
-        sortDirection: ListSortDirection? = null,
+        sort: String? = null,
+        sortDirection: String? = null,
         skip: Int,
         take: Int
     ): Result<ListingResponse>

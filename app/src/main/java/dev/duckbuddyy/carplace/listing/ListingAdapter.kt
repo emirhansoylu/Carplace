@@ -6,7 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import dev.duckbuddyy.carplace.databinding.ItemListingBinding
-import dev.duckbuddyy.carplace.load
+import dev.duckbuddyy.carplace.util.load
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
 
 class ListingAdapter(

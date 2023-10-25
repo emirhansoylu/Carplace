@@ -32,9 +32,7 @@ class FilterBottomSheetViewModel @Inject constructor(
     }
 
     private fun initializeFilterWithArguments() = viewModelScope.launch {
-        arguments.currentFilter?.let {
-            _uiStateFlow.emit(FilterBottomSheetState(it))
-        }
+        _uiStateFlow.emit(FilterBottomSheetState(arguments.currentFilter))
     }
 
     fun onSortDirectionChanged(sortDirection: ListSortDirection) = viewModelScope.launch {
@@ -75,13 +73,13 @@ class FilterBottomSheetViewModel @Inject constructor(
 
     fun onMaxYearChanged(maxYear: Editable?) = viewModelScope.launch {
         uiStateFlow.value.filter.copy(
-            maxYear = maxYear?.toString()?.toIntOrNull()
+            maxYear = maxYear?.toString()
         ).also { _uiStateFlow.emit(FilterBottomSheetState(it)) }
     }
 
     fun onMinYearChanged(minYear: Editable?) = viewModelScope.launch {
         uiStateFlow.value.filter.copy(
-            minYear = minYear?.toString()?.toIntOrNull()
+            minYear = minYear?.toString()
         ).also { _uiStateFlow.emit(FilterBottomSheetState(it)) }
     }
 

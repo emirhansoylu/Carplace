@@ -13,10 +13,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import dagger.hilt.android.AndroidEntryPoint
-import dev.duckbuddyy.carplace.collectLatestWhenStarted
 import dev.duckbuddyy.carplace.databinding.FragmentListingBinding
 import dev.duckbuddyy.carplace.listing.filter.FilterBottomSheetFragment
 import dev.duckbuddyy.carplace.model.listing.ListingResponseItem
+import dev.duckbuddyy.carplace.util.collectLatestWhenStarted
 
 @AndroidEntryPoint
 class ListingFragment : Fragment() {
@@ -78,7 +78,10 @@ class ListingFragment : Fragment() {
         }
 
         viewModel.apply {
-            listingPagingData.collectLatestWhenStarted(viewLifecycleOwner, listingPagingDataCollector)
+            listingPagingData.collectLatestWhenStarted(
+                viewLifecycleOwner,
+                listingPagingDataCollector
+            )
             navigationFlow.collectLatestWhenStarted(viewLifecycleOwner, navigationCollector)
         }
 

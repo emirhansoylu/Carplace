@@ -8,16 +8,16 @@ import dev.duckbuddyy.carplace.model.enums.SortType
 data class ListingFilter(
     val minDate: String? = null,
     val maxDate: String? = null,
-    val minYear: Int? = null,
-    val maxYear: Int? = null,
+    val minYear: String? = null,
+    val maxYear: String? = null,
     val sortType: SortType? = null,
     val sortDirection: ListSortDirection? = null
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
-        parcel.readValue(Int::class.java.classLoader) as? Int,
-        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readString(),
+        parcel.readString(),
         parcel.readString()?.let { SortType.fromDirectionId(it) },
         parcel.readString()?.let { ListSortDirection.fromDirectionId(it) }
     )
@@ -25,8 +25,8 @@ data class ListingFilter(
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(minDate)
         parcel.writeString(maxDate)
-        parcel.writeValue(minYear)
-        parcel.writeValue(maxYear)
+        parcel.writeString(minYear)
+        parcel.writeString(maxYear)
         parcel.writeString(sortType?.sortType)
         parcel.writeString(sortDirection?.direction)
     }

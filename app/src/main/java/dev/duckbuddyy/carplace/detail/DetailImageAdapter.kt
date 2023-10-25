@@ -4,7 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
-import dev.duckbuddyy.carplace.load
+import dev.duckbuddyy.carplace.util.load
 
 class DetailImageAdapter(
     private val imageUrls: List<String>,

@@ -34,8 +34,8 @@ class KtorDataSource : IRemoteDataSource {
         maxDate: String?,
         minYear: Int?,
         maxYear: Int?,
-        sort: SortType?,
-        sortDirection: ListSortDirection?,
+        sort: String?,
+        sortDirection: String?,
         skip: Int,
         take: Int
     ): Result<ListingResponse> = withContext(Dispatchers.IO) {
@@ -48,8 +48,8 @@ class KtorDataSource : IRemoteDataSource {
                     maxDate?.let { parameters.append("maxDate", it) }
                     minYear?.let { parameters.append("minYear", it.toString()) }
                     maxYear?.let { parameters.append("maxYear", it.toString()) }
-                    sort?.let { parameters.append("sort", it.sortType) }
-                    sortDirection?.let { parameters.append("sortDirection", it.direction) }
+                    sort?.let { parameters.append("sort", it) }
+                    sortDirection?.let { parameters.append("sortDirection", it) }
                     parameters.append("skip", skip.toString())
                     parameters.append("take", take.toString())
                 }

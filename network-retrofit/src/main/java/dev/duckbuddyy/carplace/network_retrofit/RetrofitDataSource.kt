@@ -30,8 +30,8 @@ class RetrofitDataSource : IRemoteDataSource {
         maxDate: String?,
         minYear: Int?,
         maxYear: Int?,
-        sort: SortType?,
-        sortDirection: ListSortDirection?,
+        sort: String?,
+        sortDirection: String?,
         skip: Int,
         take: Int
     ): Result<ListingResponse> = withContext(Dispatchers.IO) {
@@ -42,8 +42,8 @@ class RetrofitDataSource : IRemoteDataSource {
                 maxDate = maxDate,
                 minYear = minYear?.toString(),
                 maxYear = maxYear?.toString(),
-                sort = sort?.sortType,
-                sortDirection = sortDirection?.direction,
+                sort = sort,
+                sortDirection = sort,
                 skip = skip.toString(),
                 take = take.toString()
             )

@@ -4,7 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
 import com.jsibbold.zoomage.AutoResetMode
-import dev.duckbuddyy.carplace.load
+import dev.duckbuddyy.carplace.util.load
 
 class PhotoAdapter(
     private val imageUrls: List<String>,
