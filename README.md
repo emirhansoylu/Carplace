@@ -1,5 +1,5 @@
 ## Carplace
-Simple Android application shat shows a car list from API.
+Simple Android case study application shat shows a car list from API.
 
 The project developed with multi-moduled architecure. This provides separation of concerns, and all of modules has own responsibilities.
 <br />
@@ -19,14 +19,23 @@ The project developed with multi-moduled architecure. This provides separation o
 <img align="left" alt="Deno" width="24px" src="https://user-images.githubusercontent.com/6463980/28998869-97bca9dc-7a03-11e7-8a95-3bbe9c1f7926.png"/> Developed with Kotlin!
 - ⚡ Dark/Light, Portrait/Land support.
 - ⚡ Multi moduled architecture. (app, network-ktor, network-retrofit, model)
-- ⚡ Unit tests on network-ktor module.
-- ⚡ Used Android Architecture and modern programming libraries. (such as Retrofit, Ktor, Hilt, Glide, Navigation Component, Splash Screen Api, Room, Coroutines, Flow)
+- ⚡ Used Android Architecture and modern programming libraries. (such as ViewBinding, Retrofit, Ktor, Hilt, Glide, Navigation Component, Splash Screen Api, Room, Coroutines, Flow)
 - ⚡ Preferred Material 3 design principles.
 - ⚡ Single Activity pattern and transaction animations.
-- ⚡ Caching and error handling.
+- ⚡ Error handling.
 <br />
 
 ## Extras
 - 💪 MVVM Pattern
 - 💪 Reactive programming with flows and coroutines
 - 💪 Received properties from BuildConfigField
+
+## Bonuses(for assesor)
+- Filters can be selected with Extended FAB on ListingFragment
+- Filters shown applied on FilterBottomSheetFragment if already applied.
+- Call button redirects to dialer on DetailFragment
+- PhotoFragment launches when image tapped on DetailFragment
+- PhotoFragment's and DetailFragment's image positions are same. If one of them updated, the other will be updated.
+- Image inside PhotoFragment calls the biggest resouliton of image and ImageView is zoomable.
+
+- The one known issue is ListingFragment refreshing after navigating back from DetailFragment. I hope I could solve this bug before anyone reads this line.
