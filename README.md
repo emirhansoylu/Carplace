@@ -22,7 +22,7 @@ The project developed with multi-moduled architecure. This provides separation o
 - ⚡ Used Android Architecture and modern programming libraries. (such as ViewBinding, Retrofit, Ktor, Hilt, Glide, Navigation Component, Splash Screen Api, Room, Coroutines, Flow)
 - ⚡ Preferred Material 3 design principles.
 - ⚡ Single Activity pattern and transaction animations.
-- ⚡ Error handling.
+- ⚡ Network processes works inside background thread usage, error handling.
 <br />
 
 ## Extras
@@ -37,5 +37,3 @@ The project developed with multi-moduled architecure. This provides separation o
 - PhotoFragment launches when image tapped on DetailFragment
 - PhotoFragment's and DetailFragment's image positions are same. If one of them updated, the other will be updated.
 - Image inside PhotoFragment calls the biggest resouliton of image and ImageView is zoomable.
-
-- The one known issue is ListingFragment refreshing after navigating back from DetailFragment. I hope I could solve this bug before anyone reads this line.

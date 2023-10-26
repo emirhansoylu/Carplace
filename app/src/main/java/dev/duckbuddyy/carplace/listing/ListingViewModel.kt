@@ -43,7 +43,7 @@ class ListingViewModel @Inject constructor(
                 listingFilter = it
             )
         }.flow.flowOn(Dispatchers.IO).cachedIn(viewModelScope)
-    }
+    }.cachedIn(viewModelScope)
 
     private val _navigationFlow = MutableSharedFlow<NavDirections>()
     val navigationFlow = _navigationFlow.asSharedFlow()
