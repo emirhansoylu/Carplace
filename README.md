@@ -5,11 +5,11 @@ The project developed with multi-moduled architecure. This provides separation o
 <br />
  - Model module includes network models, sealed filter classes and IDataSource interface.
 
- - Network-Retrofit module includes Retrofit networking and model module. In the network-retrofit module, dependency injection used with simple kotlin object. I only expose DataSource class for other modules, other classes are internal or private. Processes in network-retrofit module are working on background thread and error safety.
+ - Network-Retrofit module includes Retrofit networking data source. This module has simple dependency injection with kotlin object. Processes in network-retrofit module are works on IO thread with error safety. This module has unit test inside.
  
- - Network-Ktor module includes KTOR networking and model module. I've developed this module before I realize the networking should be Retrofit. This module also has unit tests and also implements IDataSource. _HTTP Client module could be changed between Ktor and Retrofit. If you want to try this, update HTTP_CLIENT value on gradle.properties file._
+ - Network-Ktor module includes KTOR networking data source. I've developed this module before I realize the networking should be Retrofit. This module also has unit tests, error safety and processes works on IO thread. _HTTP Client module could be changed between Ktor and Retrofit. If you want to try this, update HTTP_CLIENT value on gradle.properties file._
 
- - Application module imports all of the modules and all features. I’ve used feature based packaging. While developing application, I’ve used __single activity pattern__ and I’ve used _Navigation Component_ for switching fragments. With the MVVM pattern view should dumb, that only observes the changes of ViewModel. When the ViewModel initializes, it has loading state then it gets product list from repository. When the response comes, ViewModel emits the UI state with StateFlow then UI collects the result.
+ - Application module imports all of the modules and all features. While developing application, __single activity pattern__ has been used with _Navigation Component_. With the MVVM pattern view should dumb, that only observes the changes of ViewModel. When the ViewModel initializes, it has loading state then it gets product list from repository. When the response comes, ViewModel emits the UI state with StateFlow then UI collects the result.
 
 ## Here are the screen recordings of application
 <a href="#"><img width="19%" height="auto" src="https://github.com/emirhansoylu/Carplace/blob/master/recording_light.gif" height="100px"/></a>
