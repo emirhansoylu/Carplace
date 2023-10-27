@@ -40,10 +40,12 @@ class PhotoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPhotoBinding.inflate(layoutInflater, container, false)
-
-        viewModel.uiStateFlow.collectLatestWhenStarted(viewLifecycleOwner, uiStateCollector)
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.uiStateFlow.collectLatestWhenStarted(viewLifecycleOwner, uiStateCollector)
     }
 
     override fun onDestroyView() {

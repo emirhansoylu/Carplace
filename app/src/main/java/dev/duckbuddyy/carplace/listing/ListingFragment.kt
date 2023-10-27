@@ -68,6 +68,11 @@ class ListingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentListingBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
             rvListing.adapter = listingAdapter
@@ -85,8 +90,6 @@ class ListingFragment : Fragment() {
         setFragmentResultListener(FilterBottomSheetFragment::class.java.simpleName) { _, bundle ->
             onFilterChanged(bundle)
         }
-
-        return binding.root
     }
 
     override fun onDestroyView() {

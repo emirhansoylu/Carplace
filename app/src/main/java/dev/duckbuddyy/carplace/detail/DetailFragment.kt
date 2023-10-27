@@ -64,6 +64,11 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
             layoutDetail.btnCall.setOnClickListener { viewModel.onCallClicked() }
@@ -81,8 +86,6 @@ class DetailFragment : Fragment() {
                 binding.vpDetail.currentItem = viewPagerPosition
             }
         }
-
-        return binding.root
     }
 
     override fun onDestroyView() {
