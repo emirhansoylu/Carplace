@@ -19,7 +19,7 @@ The project developed with multi-moduled architecure. This provides separation o
 <img align="left" alt="Deno" width="24px" src="https://user-images.githubusercontent.com/6463980/28998869-97bca9dc-7a03-11e7-8a95-3bbe9c1f7926.png"/> Developed with Kotlin!
 - ⚡ Dark/Light, Portrait/Land support.
 - ⚡ Multi moduled architecture. (app, network-ktor, network-retrofit, model)
-- ⚡ Used Android Architecture and modern programming libraries. (such as ViewBinding, Retrofit, Ktor, Hilt, Glide, Navigation Component, Splash Screen Api, Room, Coroutines, Flow)
+- ⚡ Used Android Architecture and modern programming libraries. (such as ViewBinding, Retrofit, Ktor, Hilt, Glide, Navigation Component, Splash Screen Api, Coroutines, Flow)
 - ⚡ Preferred Material 3 design principles.
 - ⚡ Single Activity pattern and transaction animations.
 - ⚡ Network processes works inside background thread usage, error handling.
