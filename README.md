@@ -23,17 +23,8 @@ The project developed with multi-moduled architecure. This provides separation o
 - ⚡ Preferred Material 3 design principles.
 - ⚡ Single Activity pattern and transaction animations.
 - ⚡ Network processes works inside background thread usage, error handling.
-<br />
 
 ## Extras
 - 💪 MVVM Pattern
 - 💪 Reactive programming with flows and coroutines
 - 💪 Received properties from BuildConfigField
-
-## Bonuses(for assesor)
-- Filters can be selected with Extended FAB on ListingFragment
-- Filters shown applied on FilterBottomSheetFragment if already applied.
-- Call button redirects to dialer on DetailFragment
-- PhotoFragment launches when image tapped on DetailFragment
-- PhotoFragment's and DetailFragment's image positions are same. If one of them updated, the other will be updated.
-- Image inside PhotoFragment calls the biggest resouliton of image and ImageView is zoomable.
